@@ -1,0 +1,21 @@
+<?php
+
+    class Produto{
+
+        private $cod;
+        private $descricao;
+        private $preco;
+        private $imposto;
+        
+    public function __get($atributo){
+        return $this->$atributo;
+    }
+
+    public function __set($atributo, $value){
+        $this->$atributo = $value;
+    }
+
+    }
+
+
+?>

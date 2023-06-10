@@ -1,0 +1,19 @@
+html,
+body{
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	color: #202945;
+}
+
+#nav ul li{
+	padding: 0 70px;
+
+}
+
+#nav ul li a{
+	font-size: 16px;
+	color: #202945;
+}
+
+#nav ul li a:hover{
+	color: #ff5100;
+}
