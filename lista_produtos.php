@@ -1,3 +1,15 @@
+<?php
+    $acao = 'recuperar';
+    require 'produto_controller.php';
+
+    echo '<pre>';
+    print_r($produto);
+    echo '</pre>';
+
+    print_r($produto[0]['p00_codigo']) ; // TROCAR 0 POR UMA VARIAVEL DEVE FUNCIONAR
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -64,23 +76,20 @@
             <div class="col-md-2">
 
             </div>
+
+            
+
             <div class="col-md-8 shadow-lg p-3 mb-5 bg-body rounded">
                 <h1 class="text-center">Lista de Produtos !</h1>
                 <div class="card">
                     <div class="card-body p-4">
-                        <h5 class="card-title">Nome do produto</h5>
+                        <h5 class="card-title"><?php  ?> </h5>
                         <h6 class="card-subtitle mb-2 text-muted">Codigo Produto</h6>
                         <p class="card-text">Preço do produto:</p>
                         <p class="card-text">Imposto: </p>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-body p-4">
-                        <h5 class="card-title">Nome do produto</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Codigo Produto</h6>
-                        <p class="card-text">Preço do produto:</p>
-                        <p class="card-text">Imposto: </p>
-                    </div>
+
             </div>
             <div class="col-md-2">
 

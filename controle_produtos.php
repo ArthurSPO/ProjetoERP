@@ -59,6 +59,12 @@
         </nav>
     </header>
 
+        <?php if (isset($_GET['inclusao']) && $_GET['inclusao'] == 1 ) {?>
+            <div class="bg-success">
+                 <h4 class="text-white text-center p-2">Inclusão feita com sucesso</h4>
+            </div> 
+        <?php   } ?>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2">
@@ -69,8 +75,20 @@
                 <h4>Adicionar Produto:</h4>
                 <form action="produto_controller.php?acao=inserir" method="post">
                     <div class="form-group">
-                        <label for="">Descrição</label>
-                        <input type="text" class="form-control" placeholder="Exemplo: Notebook" name="produto">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="">Descrição</label>
+                                <input type="text" class="form-control" placeholder="Exemplo: Motor Honda V12" name="produto">
+                                <label for="">Preço</label>
+                                <input type="text" class="form-control" placeholder="Exemplo: 200.00 (APENAS NÚMEROS)" name="preco">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="">Código do produto</label>
+                                <input type="text" class="form-control" placeholder="Exemplo: 0359" name="cod">
+                                <label for="">Imposto</label>
+                                <input type="text" class="form-control" placeholder="Exemplo: 10" name="imposto">
+                            </div>
+                        </div>
                     </div>
                     <br>
                     <button class="btn btn-success p-2">Cadastrar</button>
