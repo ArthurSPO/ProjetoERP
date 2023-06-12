@@ -36,13 +36,35 @@
             $stmt->execute();
         }
 
-        public function atualizar(){
+        public function atualizarDescricao(){
             $query = 'update p00_produto set p00_descricao = :descricao where p00_codigo = :cod';
             $stmt = $this->conexao->prepare($query);
             $stmt->bindValue(':descricao', $this->produto->__get('descricao'));
             $stmt->bindValue(':cod', $this->produto->__get('cod'));
             return $stmt->execute();
         }
+        public function atualizarCod(){
+            $query = 'update p00_produto set p00_codigo = :cod where p00_codigo = :id';
+            $stmt = $this->conexao->prepare($query);
+            $stmt->bindValue(':cod', $this->produto->__get('cod'));
+            $stmt->bindValue(':id', $this->produto->__get('id'));
+            return $stmt->execute();
+        }
+        public function atualizarPreco(){
+            $query = 'update p00_produto set p00_preco = :preco where p00_codigo = :cod';
+            $stmt = $this->conexao->prepare($query);
+            $stmt->bindValue(':preco', $this->produto->__get('preco'));
+            $stmt->bindValue(':cod', $this->produto->__get('cod'));
+            return $stmt->execute();
+        }
+        public function atualizarImposto(){
+            $query = 'update p00_produto set p00_imposto = :imposto where p00_codigo = :cod';
+            $stmt = $this->conexao->prepare($query);
+            $stmt->bindValue(':imposto', $this->produto->__get('imposto'));
+            $stmt->bindValue(':cod', $this->produto->__get('cod'));
+            return $stmt->execute();
+        }
+        
     
 
     }

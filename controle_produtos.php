@@ -102,7 +102,7 @@ require 'produto_controller.php';
             produto.insertBefore(form, produto[0])
         }
         
-        function editarPreco(id, preco){
+        function editarPreco(cod, preco){
             let form = document.createElement('form')
             form.action = 'produto_controller.php?acao=atualizar'
             form.method = 'post'
@@ -116,8 +116,8 @@ require 'produto_controller.php';
 
 			let inputCod = document.createElement('input')
 			inputCod.type = 'hidden'
-			inputCod.name = 'id'
-			inputCod.value = id
+			inputCod.name = 'cod'
+			inputCod.value = cod
 
             let button = document.createElement('button')
             button.type = 'submit'
@@ -131,13 +131,13 @@ require 'produto_controller.php';
           
             console.log(form)
 
-           let produto = document.getElementById('produto_'+id);
+           let produto = document.getElementById('produto_'+cod);
 
            produto.innerHTML = ''
 
             produto.insertBefore(form, produto[0])
         }
-        function editarImposto(id, imposto){
+        function editarImposto(cod, imposto){
             let form = document.createElement('form')
             form.action = 'produto_controller.php?acao=atualizar'
             form.method = 'post'
@@ -151,8 +151,8 @@ require 'produto_controller.php';
 
 			let inputCod = document.createElement('input')
 			inputCod.type = 'hidden'
-			inputCod.name = 'id'
-			inputCod.value = id
+			inputCod.name = 'cod'
+			inputCod.value = cod
 
             let button = document.createElement('button')
             button.type = 'submit'
@@ -166,18 +166,12 @@ require 'produto_controller.php';
           
             console.log(form)
 
-           let produto = document.getElementById('produto_'+id);
+           let produto = document.getElementById('produto_'+cod)
 
            produto.innerHTML = ''
 
             produto.insertBefore(form, produto[0])
-        }
-
-
-
-
-    
-
+        }  
     </script>
 
 </head>
