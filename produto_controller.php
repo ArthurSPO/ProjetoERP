@@ -20,13 +20,28 @@
         $service->inserir();
 
         header('location: controle_produtos.php?inclusao=1');
+
     } elseif ($acao == 'recuperar') {
         $produto = new Produto();
         $conexao = new Conexao();
 
         $service = new Service ($conexao, $produto);
-        $produto = $service->recuperar();
+        $produtos = $service->recuperar();
 
+    } elseif ($acao == 'remover'){
+        $produto = new Produto();
+        $produto->__set('cod',$_GET['p00_codigo']);
+
+        $conexao = new Conexao();
+
+        $service = new Service ($conexao, $produto);
+        $service->remover(); 
+        
+        header('location: controle_produtos.php');
+    } elseif ($acao = 'atualizar') {
+        echo '<pre>';
+        print_r($_POST);
+        echo '</pre>';
     }
 
 ?>

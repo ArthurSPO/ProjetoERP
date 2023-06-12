@@ -1,3 +1,8 @@
+<?php
+$acao = 'recuperar';
+require 'produto_controller.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -7,7 +12,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- HTML5Shiv -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -18,6 +23,53 @@
 
     <title>Iquattro Sistemas</title>
     <link rel="icon" href="imagens/favicon.jpg">
+
+    <script>
+        function remover(cod){
+            location.href = 'controle_produtos.php?acao=remover&p00_codigo=' + cod;
+
+        }
+        
+        function editar(cod, texto, preco, imposto){
+            let form = document.createElement('form')
+            form.action = 'produto_controller.php?acao=atualizar'
+            form.method = 'post'
+           // form.className = 'w-75'
+        
+            let input = document.createElement('input')
+            input.type = 'text'
+            input.name = 'descricao'
+            input.className = 'form-control'
+            input.value = 'Produto: '+ texto + '. Código: '+ cod + '. Preço: '+ preco + '. Imposto: '+ imposto + '%'
+
+			let inputCod = document.createElement('input')
+			inputCod.type = 'hidden'
+			inputCod.name = 'cod'
+			inputCod.value = cod
+
+            let button = document.createElement('button')
+            button.type = 'submit'
+			button.className = 'btn btn-info'
+			button.innerHTML = 'Atualizar'
+
+            form.appendChild(input)
+            form.appendChild(button)
+            form.appendChild(inputCod)
+
+            //console.log(form)
+
+           let produto = document.getElementById('produto_'+cod);
+
+           produto.innerHTML = ''
+
+           produto.insertBefore(form, produto[0])
+
+        }
+
+    
+
+    </script>
+
 </head>
 
 <body>
@@ -59,11 +111,11 @@
         </nav>
     </header>
 
-        <?php if (isset($_GET['inclusao']) && $_GET['inclusao'] == 1 ) {?>
-            <div class="bg-success">
-                 <h4 class="text-white text-center p-2">Inclusão feita com sucesso</h4>
-            </div> 
-        <?php   } ?>
+    <?php if (isset($_GET['inclusao']) && $_GET['inclusao'] == 1) { ?>
+        <div class="bg-success">
+            <h4 class="text-white text-center p-2">Inclusão feita com sucesso</h4>
+        </div>
+    <?php   } ?>
 
     <div class="container-fluid">
         <div class="row">
@@ -94,33 +146,30 @@
                     <button class="btn btn-success p-2">Cadastrar</button>
                 </form>
                 <br><br>
+                
+                <h4>Visualizar / Alterar / Excluir Produtos:</h4>
 
-
-                <div class="card">
-                    <div class="card-body p-4">
-                        <h5 class="card-title">Nome do produto</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Codigo Produto</h6>
-                        <p class="card-text">Preço do produto:</p>
-                        <p class="card-text">Imposto: </p>
+                <?php foreach ($produtos as $indice => $produto) { ?>
+                    <div class="card">
+                        <div class="card-body p-4" id="produto_<?=$produto->p00_codigo?>"> <!--Talvez precise colocar o ID no card-->
+                            <h5 class="card-title"><?php echo $produto->p00_descricao  ?> </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Codigo do produto: <?php echo $produto->p00_codigo ?></h6>
+                            <p class="card-text">Preço do produto: <?php echo $produto->p00_preco ?></p>
+                            <p class="card-text">Imposto: <?php echo $produto->p00_imposto ?>%</p>
+                            <button class="btn btn-danger" onclick="remover(<?=$produto->p00_codigo?>)">Excluir</button>
+                            <button class="btn btn-info" onclick="editar(<?=$produto->p00_codigo?>, '<?=$produto->p00_descricao?>', <?=$produto->p00_preco?>, <?=$produto->p00_imposto?>)">Editar</button>
+                        </div>
                     </div>
-                </div>
-
-
-                <div class="card">
-                    <div class="card-body p-4">
-                        <h5 class="card-title">Nome do produto</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Codigo Produto</h6>
-                        <p class="card-text">Preço do produto:</p>
-                        <p class="card-text">Imposto: </p>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-
+                <?php } ?>
+                
             </div>
         </div>
+    </div>
+
+    <div class="col-md-2">
+
+    </div>
+    </div>
 
     </div>
 
