@@ -35,6 +35,14 @@
             $stmt->bindValue(':cod', $this->produto->__get('cod'));
             $stmt->execute();
         }
+
+        public function atualizar(){
+            $query = 'update p00_produto set p00_descricao = :descricao where p00_codigo = :cod';
+            $stmt = $this->conexao->prepare($query);
+            $stmt->bindValue(':descricao', $this->produto->__get('descricao'));
+            $stmt->bindValue(':cod', $this->produto->__get('cod'));
+            return $stmt->execute();
+        }
     
 
     }

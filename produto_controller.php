@@ -39,9 +39,22 @@
         
         header('location: controle_produtos.php');
     } elseif ($acao = 'atualizar') {
-        echo '<pre>';
-        print_r($_POST);
-        echo '</pre>';
+        $produto = new Produto();
+        $produto->__set('descricao',$_POST['descricao']);
+        $produto->__set('cod', $_POST['cod']);
+
+        $conexao = new Conexao();
+
+        $service = new Service ($conexao, $produto);
+
+        if($service->atualizar()){
+            header('location: controle_produtos.php');
+        } else{
+            //poderia tratar erro
+        }
+
+    
+
     }
 
 ?>
