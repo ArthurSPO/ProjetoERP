@@ -26,14 +26,14 @@
 
          header('location: controle_clientes.php?inclusao=1');
 
-    } //elseif ($acao == 'recuperar') {
-    //     $produto = new Produto();
-    //     $conexao = new Conexao();
+    } elseif ($acao == 'recuperar') {
+        $cliente = new Cliente();
+        $conexao = new Conexao();
 
-    //     $service = new Service ($conexao, $produto);
-    //     $produtos = $service->recuperar();
+        $service = new ServiceCliente ($conexao, $cliente);
+        $cliente = $service->recuperar();
 
-    // } elseif ($acao == 'remover'){
+     } //elseif ($acao == 'remover'){
     //     $produto = new Produto();
     //     $produto->__set('cod',$_GET['p00_codigo']);
 

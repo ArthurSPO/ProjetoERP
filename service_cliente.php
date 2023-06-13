@@ -24,12 +24,12 @@
             $stmt->execute();
         }
 
-        // public function recuperar(){
-        //     $query = 'select p00_codigo, p00_descricao, p00_preco, p00_imposto from p00_produto';
-        //     $stmt = $this->conexao->prepare($query);
-        //     $stmt->execute();
-        //     return $stmt->fetchAll(PDO::FETCH_OBJ);
-        // }
+        public function recuperar(){
+            $query = 'select * from c00_cliente';
+            $stmt = $this->conexao->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
 
         // public function remover(){
         //     $query = 'delete from p00_produto where p00_codigo = :cod';
