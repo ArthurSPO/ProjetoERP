@@ -13,10 +13,18 @@
         $cliente->__set('pessoa', $_POST['tipo']);
         $cliente->__set('data_nascimento', $_POST['data']);
         if ($_POST['tipo'] == 'f'){
+            $_POST['cpf'] = str_replace('.','', $_POST['cpf']);
+            $_POST['cpf'] = str_replace('-','', $_POST['cpf']);
             $cliente->__set('cnpj', $_POST['cpf']);
         } elseif ($_POST['tipo'] == 'j') {
+            $_POST['cpnj'] = str_replace('.','', $_POST['cpnj']);
+            $_POST['cpnj'] = str_replace('-','', $_POST['cpnj']);
+            $_POST['cpnj'] = str_replace('/','', $_POST['cpnj']);
             $cliente->__set('cnpj', $_POST['cnpj']);
         } elseif ($_POST['tipo'] == 'o') {
+            $_POST['numberOutro'] = str_replace('.','', $_POST['numberOutro']);
+            $_POST['numberOutro'] = str_replace('-','', $_POST['numberOutro']);
+            $_POST['numberOutro'] = str_replace('/','', $_POST['numberOutro']);
             $cliente->__set('cnpj', $_POST['numberOutro']);
         }
 
@@ -33,74 +41,15 @@
         $service = new ServiceCliente ($conexao, $cliente);
         $cliente = $service->recuperar();
 
-     } //elseif ($acao == 'remover'){
-    //     $produto = new Produto();
-    //     $produto->__set('cod',$_GET['p00_codigo']);
+     } elseif ($acao == 'remover'){
+        $cliente = new Cliente();
+        $cliente->__set('cod_cliente',$_GET['c00_codigo']);
+        $conexao = new Conexao();
 
-    //     $conexao = new Conexao();
-
-    //     $service = new Service ($conexao, $produto);
-    //     $service->remover(); 
+        $service = new ServiceCliente ($conexao, $cliente);
+  
+        $service->remover(); 
         
-    //     header('location: controle_produtos.php');
-    // } elseif ($acao = 'atualizar') {
-    //     $produto = new Produto();
-    //     if (empty($_POST['preco']) && empty($_POST['imposto']) && empty($_POST['id'])){ //Edita descrição
-    //         $produto->__set('cod',$_POST['cod']);
-    //         $produto->__set('descricao',$_POST['descricao']);   
-    //         $conexao = new Conexao();
-    //         $service = new Service ($conexao, $produto);
-    //         $service->atualizarDescricao();
-
-    //     if($service->atualizarDescricao()){
-    //         header('location: controle_produtos.php');
-    //     } else{
-    //         echo '<br>';
-    //     }
-            
-            
-    //     } elseif(empty($_POST['descricao']) && empty($_POST['preco']) && empty($_POST['imposto'])){  // Edita Cod
-    //         $produto->__set('id',$_POST['id']);
-    //         $produto->__set('cod',$_POST['cod']);
-    //         $conexao = new Conexao();
-    //         $service = new Service ($conexao, $produto);
-    //         $service->atualizarCod();
-
-    //         if($service->atualizarCod()){
-    //             header('location: controle_produtos.php');
-    //         } else{
-    //             echo '<br>';
-    //         }
-           
-    //     } elseif (empty($_POST['descricao']) && empty($_POST['id']) && empty($_POST['imposto'])) { // Edita Preco
-    //         $produto->__set('cod',$_POST['cod']);
-    //         $produto->__set('preco',$_POST['preco']);
-    //         $conexao = new Conexao();
-    //         $service = new Service ($conexao, $produto);
-    //         $service->atualizarPreco();
-
-    //         if($service->atualizarPreco()){
-    //             header('location: controle_produtos.php');
-    //         } else{
-    //             echo '<br>';
-    //         }
-            
-    //     } elseif (empty($_POST['descricao']) && empty($_POST['preco']) && empty($_POST['id'])) {
-    //         $produto->__set('cod',$_POST['cod']);
-    //         $_POST['imposto'] = str_replace('%','',$_POST['imposto']); // Tratando %
-    //         $produto->__set('imposto',$_POST['imposto']);
-    //         $conexao = new Conexao();
-    //         $service = new Service ($conexao, $produto);
-    //         $service->atualizarImposto();
-    //         if($service->atualizarImposto()){
-    //             header('location: controle_produtos.php');
-    //         } else{
-    //             echo '<br>';
-    //         }
-    //     }
-        
-    //     $service = new Service ($conexao, $produto);
-
-
-    // }
+        header('location: controle_clientes.php');
+    } 
 ?>

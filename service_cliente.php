@@ -25,49 +25,21 @@
         }
 
         public function recuperar(){
-            $query = 'select * from c00_cliente';
+            $query = 'select c.c00_codigo, c.c00_nome, t.tipo, c.c00_cnpj, c.c00_estado, c.c00_data_nascimento
+            from c00_cliente as c
+            left join tipo_cliente as t on (c.c00_pessoa = t.id)
+            '; 
             $stmt = $this->conexao->prepare($query);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
 
-        // public function remover(){
-        //     $query = 'delete from p00_produto where p00_codigo = :cod';
-        //     $stmt = $this->conexao->prepare($query);
-        //     $stmt->bindValue(':cod', $this->produto->__get('cod'));
-        //     $stmt->execute();
-        // }
-
-        // public function atualizarDescricao(){
-        //     $query = 'update p00_produto set p00_descricao = :descricao where p00_codigo = :cod';
-        //     $stmt = $this->conexao->prepare($query);
-        //     $stmt->bindValue(':descricao', $this->produto->__get('descricao'));
-        //     $stmt->bindValue(':cod', $this->produto->__get('cod'));
-        //     return $stmt->execute();
-        // }
-        // public function atualizarCod(){
-        //     $query = 'update p00_produto set p00_codigo = :cod where p00_codigo = :id';
-        //     $stmt = $this->conexao->prepare($query);
-        //     $stmt->bindValue(':cod', $this->produto->__get('cod'));
-        //     $stmt->bindValue(':id', $this->produto->__get('id'));
-        //     return $stmt->execute();
-        // }
-        // public function atualizarPreco(){
-        //     $query = 'update p00_produto set p00_preco = :preco where p00_codigo = :cod';
-        //     $stmt = $this->conexao->prepare($query);
-        //     $stmt->bindValue(':preco', $this->produto->__get('preco'));
-        //     $stmt->bindValue(':cod', $this->produto->__get('cod'));
-        //     return $stmt->execute();
-        // }
-        // public function atualizarImposto(){
-        //     $query = 'update p00_produto set p00_imposto = :imposto where p00_codigo = :cod';
-        //     $stmt = $this->conexao->prepare($query);
-        //     $stmt->bindValue(':imposto', $this->produto->__get('imposto'));
-        //     $stmt->bindValue(':cod', $this->produto->__get('cod'));
-        //     return $stmt->execute();
-        // }
-        
-    
+        public function remover(){
+            $query = 'delete from c00_cliente where c00_codigo = :cod';
+            $stmt = $this->conexao->prepare($query);
+            $stmt->bindValue(':cod', $this->cliente->__get('cod_cliente'));
+            $stmt->execute();
+        }
 
     }
 

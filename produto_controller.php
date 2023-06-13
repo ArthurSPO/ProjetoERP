@@ -5,19 +5,6 @@
 
     $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
     
-    // TESTE DO ATUALIZAR
-    // echo '<pre>';
-    // print_r($_POST);
-    // echo '</pre>';
-    // echo "<br> Caimos no ... <br>";
-
-    // echo empty($_POST['id']);
-    // echo empty($_POST['produto']);
-    // echo empty($_POST['cod']);
-    // echo empty($_POST['preco']);
-    // echo empty($_POST['imposto']);
-
-
     if ($acao == 'inserir') {
         $produto = new Produto();
         $produto->__set('descricao',$_POST['produto']);
@@ -106,7 +93,5 @@
         }
         
         $service = new Service ($conexao, $produto);
-
-
     }
 ?>

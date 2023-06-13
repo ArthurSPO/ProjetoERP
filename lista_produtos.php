@@ -1,6 +1,6 @@
 <?php
-    $acao = 'recuperar';
-    require 'produto_controller.php';
+$acao = 'recuperar';
+require 'produto_controller.php';
 ?>
 
 <!DOCTYPE html>
@@ -70,20 +70,19 @@
             </div>
             <div class="col-md-8 shadow-lg p-3 mb-5 bg-body rounded">
                 <h1 class="text-center">Lista de Produtos !</h1>
-               
 
-     
-                    <?php foreach ($produtos as $indice => $produto){ ?>
-                        <div class="card">
-                    <div class="card-body p-4">
-                        <h5 class="card-title"><?php echo $produto->p00_descricao  ?> </h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Codigo do produto: <?php echo $produto->p00_codigo ?></h6>
-                        <p class="card-text">Preço do produto: <?php echo $produto->p00_preco ?></p>
-                        <p class="card-text">Imposto: <?php echo $produto->p00_imposto ?>%</p>
+
+
+                <?php foreach ($produtos as $indice => $produto) { ?>
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <h5 class="card-title"><?php echo $produto->p00_descricao  ?> </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Codigo do produto: <?php echo $produto->p00_codigo ?></h6>
+                            <p class="card-text">Preço do produto: <?php echo $produto->p00_preco ?></p>
+                            <p class="card-text">Imposto: <?php echo $produto->p00_imposto ?>%</p>
+                        </div>
                     </div>
-                    </div>
-                    <?php } ?>
-                
+                <?php } ?>
 
             </div>
             <div class="col-md-2">
@@ -92,9 +91,6 @@
         </div>
 
     </div>
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>

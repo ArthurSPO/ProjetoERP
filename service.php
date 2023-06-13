@@ -64,9 +64,5 @@
             $stmt->bindValue(':cod', $this->produto->__get('cod'));
             return $stmt->execute();
         }
-        
-    
-
     }
-
 ?>

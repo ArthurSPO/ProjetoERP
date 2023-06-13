@@ -1,3 +1,8 @@
+<?php
+$acao = 'recuperar';
+require 'cliente_controller.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -21,6 +26,12 @@
 
     <title>Iquattro Sistemas</title>
     <link rel="icon" href="imagens/favicon.jpg">
+
+    <script>
+        function remover(cod) {
+            location.href = 'controle_clientes.php?acao=remover&c00_codigo=' + cod;
+        }
+    </script>
 </head>
 
 <body>
@@ -60,6 +71,8 @@
             </div>
 
         </nav>
+
+
     </header>
 
     <?php if (isset($_GET['inclusao']) && $_GET['inclusao'] == 1) { ?>
@@ -79,16 +92,16 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="">Nome do cliente</label>
-                                <input type="text" class="form-control" placeholder="Exemplo: Arthur Pontes" name="nome">
-                                <label for="">Código do cliente</label>
-                                <input type="text" class="form-control" placeholder="Exemplo: 3524" name="cod">
-                                <label for="">Estado</label>
-                                <input type="text" class="form-control" placeholder="Exemplo: SP" name="estado">
+                                <label for="nome">Nome do cliente</label>
+                                <input type="text" class="form-control" placeholder="Exemplo: Arthur Pontes" name="nome" id="nome">
+                                <label for="cod">Código do cliente</label>
+                                <input type="text" class="form-control" placeholder="Exemplo: 3524" name="cod" id="cod">
+                                <label for="estado">Estado</label>
+                                <input type="text" class="form-control" placeholder="Exemplo: SP" name="estado" id="estado">
                             </div>
                             <div class="col-md-6">
                                 <div>
-                                    <label for="">Tipo de Pessoa:</label>
+                                    <label for="tipo">Tipo de Pessoa:</label>
                                     <select id="tipo" name="tipo">
                                         <option value="f">Fisica</option>
                                         <option value="j">Juridica</option>
@@ -97,27 +110,45 @@
                                 </div>
 
                                 <div>
-                                    <label for="">Insira CNPJ: </label>
+                                    <label for="cnpj">Insira CNPJ: </label>
                                     <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="00000000/0000-00">
                                 </div>
                                 <div>
-                                    <label>Insira CPF:</label>
+                                    <label for="cpf">Insira CPF:</label>
                                     <input type="text" oninput="mascara(this)" class="form-control" id="cpf" name="cpf" placeholder="000000000-00">
                                 </div>
                                 <div>
-                                    <label>Insira numeros do meio de identificação:</label>
+                                    <label for="outro">Insira numeros do meio de identificação:</label>
                                     <input type="text" class="form-control" id="outro" name="numberOutro" placeholder="0000">
                                 </div>
-                                <label for="">Data de nascimento</label>
-                                <input type="date" class="form-control" name="data">
+                                <label for="date">Data de nascimento</label>
+                                <input type="date" class="form-control" name="data" id="date">
                             </div>
+
                         </div>
                     </div>
                     <br>
 
                     <button class="btn btn-success p-2">Cadastrar</button>
                 </form>
-                <br><br>
+                <br>
+                <h4>Visualizar / Alterar / Excluir Clientes:</h4>
+                <?php foreach ($cliente as $indice => $clientes) { ?>
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <h5 class="card-title"><?php echo $clientes->c00_nome ?> </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Codigo do cliente: <?php echo $clientes->c00_codigo ?></h6>
+                            <p class="card-text">Tipo de pessoa: <?php echo $clientes->tipo ?></p>
+                            <p class="card-text">Nº CPF/CNP/Outros: <?php echo $clientes->c00_cnpj ?></p>
+                            <p class="card-text">Estado: <?php echo $clientes->c00_estado ?></p>
+                            <p class="card-text">Data Nascimento: <?php echo $clientes->c00_data_nascimento ?></p>
+                            <button class="btn btn-danger" onclick="remover(<?= $clientes->c00_codigo ?>)">Excluir</button>
+                        </div>
+                    </div>
+                <?php } ?>
+
+
+
             </div>
             <div class="col-md-2">
 
@@ -148,20 +179,20 @@
             });
         });
 
-        function mascara(i){
-   
-   var v = i.value;
-   
-   if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
-      i.value = v.substring(0, v.length-1);
-      return;
-   }
-   
-   i.setAttribute("maxlength", "14");
-   if (v.length == 3 || v.length == 7) i.value += ".";
-   if (v.length == 11) i.value += "-";
+        function mascara(i) {
 
-}
+            var v = i.value;
+
+            if (isNaN(v[v.length - 1])) { // impede entrar outro caractere que não seja número
+                i.value = v.substring(0, v.length - 1);
+                return;
+            }
+
+            i.setAttribute("maxlength", "14");
+            if (v.length == 3 || v.length == 7) i.value += ".";
+            if (v.length == 11) i.value += "-";
+
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>

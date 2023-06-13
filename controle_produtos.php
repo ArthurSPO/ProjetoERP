@@ -25,153 +25,154 @@ require 'produto_controller.php';
     <link rel="icon" href="imagens/favicon.jpg">
 
     <script>
-        function remover(cod){
+        function remover(cod) {
             location.href = 'controle_produtos.php?acao=remover&p00_codigo=' + cod;
 
         }
-        
-        function editarDescricao(cod, texto){
+
+        function editarDescricao(cod, texto) {
             let form = document.createElement('form')
             form.action = 'produto_controller.php?acao=atualizar'
             form.method = 'post'
-           // form.className = 'w-75'
+            // form.className = 'w-75'
 
             let input = document.createElement('input')
             input.type = 'text'
             input.name = 'descricao'
             input.className = 'form-control'
-            input.value = texto 
+            input.value = texto
 
-			let inputCod = document.createElement('input')
-			inputCod.type = 'hidden'
-			inputCod.name = 'cod'
-			inputCod.value = cod
+            let inputCod = document.createElement('input')
+            inputCod.type = 'hidden'
+            inputCod.name = 'cod'
+            inputCod.value = cod
 
             let button = document.createElement('button')
             button.type = 'submit'
-			button.className = 'btn btn-info'
-			button.innerHTML = 'Atualizar'
+            button.className = 'btn btn-info'
+            button.innerHTML = 'Atualizar'
 
-            
+
             form.appendChild(input)
             form.appendChild(button)
             form.appendChild(inputCod)
-          
+
             console.log(form)
 
-           let produto = document.getElementById('produto_'+cod);
+            let produto = document.getElementById('produto_' + cod);
 
-           produto.innerHTML = ''
+            produto.innerHTML = ''
 
             produto.insertBefore(form, produto[0])
         }
 
-        function editarCod(id, cod){
+        function editarCod(id, cod) {
             let form = document.createElement('form')
             form.action = 'produto_controller.php?acao=atualizar'
             form.method = 'post'
-           // form.className = 'w-75'
+            // form.className = 'w-75'
 
             let input = document.createElement('input')
             input.type = 'text'
             input.name = 'cod'
             input.className = 'form-control'
-            input.value = cod 
+            input.value = cod
 
-			let inputCod = document.createElement('input')
-			inputCod.type = 'hidden'
-			inputCod.name = 'id'
-			inputCod.value = id
+            let inputCod = document.createElement('input')
+            inputCod.type = 'hidden'
+            inputCod.name = 'id'
+            inputCod.value = id
 
             let button = document.createElement('button')
             button.type = 'submit'
-			button.className = 'btn btn-info'
-			button.innerHTML = 'Atualizar'
+            button.className = 'btn btn-info'
+            button.innerHTML = 'Atualizar'
 
-            
+
             form.appendChild(input)
             form.appendChild(button)
             form.appendChild(inputCod)
-          
+
             console.log(form)
 
-           let produto = document.getElementById('produto_'+cod);
+            let produto = document.getElementById('produto_' + cod);
 
-           produto.innerHTML = ''
+            produto.innerHTML = ''
 
             produto.insertBefore(form, produto[0])
         }
-        
-        function editarPreco(cod, preco){
+
+        function editarPreco(cod, preco) {
             let form = document.createElement('form')
             form.action = 'produto_controller.php?acao=atualizar'
             form.method = 'post'
-           // form.className = 'w-75'
+            // form.className = 'w-75'
 
             let input = document.createElement('input')
             input.type = 'text'
             input.name = 'preco'
             input.className = 'form-control'
-            input.value = preco 
+            input.value = preco
 
-			let inputCod = document.createElement('input')
-			inputCod.type = 'hidden'
-			inputCod.name = 'cod'
-			inputCod.value = cod
+            let inputCod = document.createElement('input')
+            inputCod.type = 'hidden'
+            inputCod.name = 'cod'
+            inputCod.value = cod
 
             let button = document.createElement('button')
             button.type = 'submit'
-			button.className = 'btn btn-info'
-			button.innerHTML = 'Atualizar'
+            button.className = 'btn btn-info'
+            button.innerHTML = 'Atualizar'
 
-            
+
             form.appendChild(input)
             form.appendChild(button)
             form.appendChild(inputCod)
-          
+
             console.log(form)
 
-           let produto = document.getElementById('produto_'+cod);
+            let produto = document.getElementById('produto_' + cod);
 
-           produto.innerHTML = ''
+            produto.innerHTML = ''
 
             produto.insertBefore(form, produto[0])
         }
-        function editarImposto(cod, imposto){
+
+        function editarImposto(cod, imposto) {
             let form = document.createElement('form')
             form.action = 'produto_controller.php?acao=atualizar'
             form.method = 'post'
-           // form.className = 'w-75'
+            // form.className = 'w-75'
 
             let input = document.createElement('input')
             input.type = 'text'
             input.name = 'imposto'
             input.className = 'form-control'
-            input.value = imposto +'%'
+            input.value = imposto + '%'
 
-			let inputCod = document.createElement('input')
-			inputCod.type = 'hidden'
-			inputCod.name = 'cod'
-			inputCod.value = cod
+            let inputCod = document.createElement('input')
+            inputCod.type = 'hidden'
+            inputCod.name = 'cod'
+            inputCod.value = cod
 
             let button = document.createElement('button')
             button.type = 'submit'
-			button.className = 'btn btn-info'
-			button.innerHTML = 'Atualizar'
+            button.className = 'btn btn-info'
+            button.innerHTML = 'Atualizar'
 
-            
+
             form.appendChild(input)
             form.appendChild(button)
             form.appendChild(inputCod)
-          
+
             console.log(form)
 
-           let produto = document.getElementById('produto_'+cod)
+            let produto = document.getElementById('produto_' + cod)
 
-           produto.innerHTML = ''
+            produto.innerHTML = ''
 
             produto.insertBefore(form, produto[0])
-        }  
+        }
     </script>
 
 </head>
@@ -236,7 +237,7 @@ require 'produto_controller.php';
                                 <label for="">Descrição</label>
                                 <input type="text" class="form-control" placeholder="Exemplo: Motor Honda V12" name="produto">
                                 <label for="">Preço</label>
-                                <input type="number" class="form-control" placeholder="Exemplo: 200.00 (APENAS NÚMEROS)" name="preco">
+                                <input type="text" class="form-control" placeholder="Exemplo: 200.00 (APENAS NÚMEROS)" name="preco">
                             </div>
                             <div class="col-md-6">
                                 <label for="">Código do produto</label>
@@ -250,26 +251,26 @@ require 'produto_controller.php';
                     <button class="btn btn-success p-2">Cadastrar</button>
                 </form>
                 <br><br>
-                
+
                 <h4>Visualizar / Alterar / Excluir Produtos:</h4>
 
                 <?php foreach ($produtos as $indice => $produto) { ?>
                     <div class="card">
-                        <div class="card-body p-4" id="produto_<?=$produto->p00_codigo?>"> 
+                        <div class="card-body p-4" id="produto_<?= $produto->p00_codigo ?>">
                             <h5 class="card-title"><?php echo $produto->p00_descricao  ?> </h5>
                             <h6 class="card-subtitle mb-2 text-muted">Codigo do produto: <?php echo $produto->p00_codigo ?></h6>
-                            <p class="card-text">Preço do produto: <?php echo $produto->p00_preco?></p>
-                            <p class="card-text">Imposto: <?php echo $produto->p00_imposto?>%</p>
-                            <button class="btn btn-danger" onclick="remover(<?=$produto->p00_codigo?>)">Excluir</button>
-                            <button class="btn btn-info" onclick="editarDescricao(<?=$produto->p00_codigo?>, '<?=$produto->p00_descricao?>')">Editar Produto</button>
-                            <button class="btn btn-info" onclick="editarCod(<?=$produto->p00_codigo?>, <?=$produto->p00_codigo?>)">Editar Código</button>
-                            <button class="btn btn-info" onclick="editarPreco(<?=$produto->p00_codigo?>, <?=$produto->p00_preco?>)">Editar Preço</button>
-                            <button class="btn btn-info" onclick="editarImposto(<?=$produto->p00_codigo?>, <?=$produto->p00_imposto?>)">Editar Imposto</button>
+                            <p class="card-text">Preço do produto: <?php echo $produto->p00_preco ?></p>
+                            <p class="card-text">Imposto: <?php echo $produto->p00_imposto ?>%</p>
+                            <button class="btn btn-danger" onclick="remover(<?= $produto->p00_codigo ?>)">Excluir</button>
+                            <button class="btn btn-info" onclick="editarDescricao(<?= $produto->p00_codigo ?>, '<?= $produto->p00_descricao ?>')">Editar Produto</button>
+                            <button class="btn btn-info" onclick="editarCod(<?= $produto->p00_codigo ?>, <?= $produto->p00_codigo ?>)">Editar Código</button>
+                            <button class="btn btn-info" onclick="editarPreco(<?= $produto->p00_codigo ?>, <?= $produto->p00_preco ?>)">Editar Preço</button>
+                            <button class="btn btn-info" onclick="editarImposto(<?= $produto->p00_codigo ?>, <?= $produto->p00_imposto ?>)">Editar Imposto</button>
 
                         </div>
                     </div>
                 <?php } ?>
-                
+
             </div>
         </div>
     </div>
@@ -277,11 +278,6 @@ require 'produto_controller.php';
     <div class="col-md-2">
 
     </div>
-    </div>
-
-    </div>
-
-
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
