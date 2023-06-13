@@ -236,7 +236,7 @@ require 'produto_controller.php';
                                 <label for="">Descrição</label>
                                 <input type="text" class="form-control" placeholder="Exemplo: Motor Honda V12" name="produto">
                                 <label for="">Preço</label>
-                                <input type="text" class="form-control" placeholder="Exemplo: 200.00 (APENAS NÚMEROS)" name="preco">
+                                <input type="number" class="form-control" placeholder="Exemplo: 200.00 (APENAS NÚMEROS)" name="preco">
                             </div>
                             <div class="col-md-6">
                                 <label for="">Código do produto</label>

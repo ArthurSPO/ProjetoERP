@@ -1,3 +1,8 @@
+<?php
+    $acao = 'recuperar';
+    require 'cliente_controller.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -68,6 +73,17 @@
             </div>
             <div class="col-md-8 shadow-lg p-3 mb-5 bg-body rounded">
                 <h1 class="text-center">Lista de Cliente ! </h1>
+                <?php foreach ($produtos as $indice => $produto){ ?>
+                        <div class="card">
+                    <div class="card-body p-4">
+                        <h5 class="card-title"><?php echo $produto->p00_descricao  ?> </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Codigo do produto: <?php echo $produto->p00_codigo ?></h6>
+                        <p class="card-text">Preço do produto: <?php echo $produto->p00_preco ?></p>
+                        <p class="card-text">Imposto: <?php echo $produto->p00_imposto ?>%</p>
+                    </div>
+                    </div>
+                    <?php } ?>
+
             </div>
             <div class="col-md-2">
                 
