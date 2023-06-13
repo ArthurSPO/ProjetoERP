@@ -62,6 +62,11 @@
         </nav>
     </header>
 
+    <?php if (isset($_GET['inclusao']) && $_GET['inclusao'] == 1) { ?>
+        <div class="bg-success">
+            <h4 class="text-white text-center p-2">Inclusão feita com sucesso</h4>
+        </div>
+    <?php   } ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2">
@@ -97,7 +102,7 @@
                                 </div>
                                 <div>
                                     <label>Insira CPF:</label>
-                                    <input type="text" class="form-control" id="cpf" name="cpf" placeholder="000000000-00">
+                                    <input type="text" oninput="mascara(this)" class="form-control" id="cpf" name="cpf" placeholder="000000000-00">
                                 </div>
                                 <div>
                                     <label>Insira numeros do meio de identificação:</label>
@@ -143,11 +148,20 @@
             });
         });
 
-        var cpf = document.querySelector("#cpf");
+        function mascara(i){
+   
+   var v = i.value;
+   
+   if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
+      i.value = v.substring(0, v.length-1);
+      return;
+   }
+   
+   i.setAttribute("maxlength", "14");
+   if (v.length == 3 || v.length == 7) i.value += ".";
+   if (v.length == 11) i.value += "-";
 
-        cpf.addEventListener("blur", function() {
-            if (cpf.value) cpf.value = cpf.value.match(/.{1,3}/g).join(".").replace(/\.(?=[^.]*$)/, "-");
-        });
+}
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
