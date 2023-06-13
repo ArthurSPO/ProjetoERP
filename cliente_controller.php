@@ -3,36 +3,30 @@
     require "service_cliente.php";
     require "conexao.php";
 
-    // $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
+     $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
     
-    
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
-    echo "<br> Caimos no Cliente Controller <br>";
+    if ($acao == 'inserir') {
+        $cliente = new Cliente();
+        $cliente->__set('cod_cliente', $_POST['cod']);
+        $cliente->__set('nome', $_POST['nome']);
+        $cliente->__set('estado', $_POST['estado']);
+        $cliente->__set('pessoa', $_POST['tipo']);
+        $cliente->__set('data_nascimento', $_POST['data']);
+        if ($_POST['tipo'] == 'f'){
+            $cliente->__set('cnpj', $_POST['cpf']);
+        } elseif ($_POST['tipo'] == 'j') {
+            $cliente->__set('cnpj', $_POST['cnpj']);
+        } elseif ($_POST['tipo'] == 'o') {
+            $cliente->__set('cnpj', $_POST['numberOutro']);
+        }
 
-    // // echo empty($_POST['id']);
-    // // echo empty($_POST['produto']);
-    // // echo empty($_POST['cod']);
-    // // echo empty($_POST['preco']);
-    // // echo empty($_POST['imposto']);
+        $conexao = new Conexao();
+        $service = new ServiceCliente($conexao, $cliente);
+        $service->inserir();
 
+         header('location: controle_clientes.php?inclusao=1');
 
-    // if ($acao == 'inserir') {
-    //     $produto = new Produto();
-    //     $produto->__set('descricao',$_POST['produto']);
-    //     $produto->__set('cod',$_POST['cod']);
-    //     $produto->__set('preco',$_POST['preco']);
-    //     $produto->__set('imposto',$_POST['imposto']);
-
-    //     $conexao = new Conexao();
-        
-    //     $service = new Service($conexao, $produto);
-    //     $service->inserir();
-
-    //     header('location: controle_produtos.php?inclusao=1');
-
-    // } elseif ($acao == 'recuperar') {
+    } //elseif ($acao == 'recuperar') {
     //     $produto = new Produto();
     //     $conexao = new Conexao();
 
