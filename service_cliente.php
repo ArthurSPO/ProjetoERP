@@ -42,10 +42,21 @@
         }
 
         public function atualizarNome(){
-            $query = 'update c00_cliente set c00_nome = :nome where c00_codigo = :cod';
+            $query = "UPDATE c00_cliente 
+            SET c00_nome = IF(:nome <> '', :nome, c00_nome),
+                c00_codigo = IF(:cod <> '', :cod, c00_codigo),
+                c00_pessoa = IF(:pessoa <> '', :pessoa, c00_pessoa),
+                c00_cnpj = IF(:cnpj <> '', :cnpj, c00_cnpj),
+                c00_estado = IF(:estado <> '', :estado, c00_estado),
+                c00_data_nascimento = IF(:data <> '', :data, c00_data_nascimento)
+            WHERE c00_codigo = :cod";
             $stmt = $this->conexao->prepare($query);
-            $stmt->bindValue(':nome', $this->cliente->__get('nome'));
             $stmt->bindValue(':cod', $this->cliente->__get('cod_cliente'));
+            $stmt->bindValue(':nome', $this->cliente->__get('nome'));
+            $stmt->bindValue(':pessoa', $this->cliente->__get('pessoa'));
+            $stmt->bindValue(':cnpj', $this->cliente->__get('cnpj'));
+            $stmt->bindValue(':estado', $this->cliente->__get('estado'));
+            $stmt->bindValue(':data', $this->cliente->__get('data_nascimento'));
             return $stmt->execute();
         }
     }
