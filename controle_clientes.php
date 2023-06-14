@@ -32,7 +32,7 @@ require 'cliente_controller.php';
             location.href = 'controle_clientes.php?acao=remover&c00_codigo=' + cod;
         }
 
-        function editarNome(cod, texto) {
+        function editar(cod, texto) {
             let form = document.createElement('form')
             form.action = 'cliente_controller.php?acao=atualizar'
             form.method = 'post'
@@ -66,6 +66,81 @@ require 'cliente_controller.php';
 
             cliente.insertBefore(form, cliente[0])
         }
+        function editarTipo(cod, tipo, cnpj) {
+            let selectAtributo1 = document.createElement('select');
+            selectAtributo1.name = 'tipo';
+            selectAtributo1.className = 'form-select';
+
+            let option1 = document.createElement('option');
+            option1.value = 'f';
+            option1.text = 'Fisica';
+            if (tipo === 'Fisica') {
+                option1.selected = true; // Define como selecionada se o tipo for 'f'
+                }
+            selectAtributo1.appendChild(option1);
+
+            // Opção 2
+            let option2 = document.createElement('option');
+            option2.value = 'j';
+            option2.text = 'Juridica';
+                if (tipo === 'Juridica') {
+                option2.selected = true; // Define como selecionada se o tipo for 'j'
+                }
+            selectAtributo1.appendChild(option2);
+
+            // Opção 3
+            let option3 = document.createElement('option');
+            option3.value = 'o';
+            option3.text = 'Outro';
+                if (tipo === 'Outro') {
+                option3.selected = true; // Define como selecionada se o tipo for 'o'
+                }
+            selectAtributo1.appendChild(option3);
+
+
+            // Campo de entrada para CNPJ
+            let inputCnpj = document.createElement('input');
+            inputCnpj.type = 'text';
+            inputCnpj.name = 'cnpj';
+            inputCnpj.className = 'form-control';
+            inputCnpj.value = cnpj;
+
+            // Crie os demais elementos do formulário
+            let form = document.createElement('form');
+            form.action = 'cliente_controller.php?acao=atualizarTipo';
+            form.method = 'post';
+
+            // let input = document.createElement('input');
+            // input.type = 'text';
+            // input.name = 'tipo';
+            // input.className = 'form-control';
+            // input.value = tipo;
+
+            let inputCod = document.createElement('input');
+            inputCod.type = 'hidden';
+            inputCod.name = 'cod';
+            inputCod.value = cod;
+
+            let button = document.createElement('button');
+            button.type = 'submit';
+            button.className = 'btn btn-info';
+            button.innerHTML = 'Atualizar';
+
+            // Adicione os elementos ao formulário
+           // form.appendChild(input);
+            form.appendChild(selectAtributo1);
+            form.appendChild(inputCnpj);
+            form.appendChild(button);
+            form.appendChild(inputCod);
+
+            console.log(form);
+
+            let cliente = document.getElementById('cliente_' + cod);
+            cliente.innerHTML = '';
+            cliente.insertBefore(form, cliente[0]);
+        }       
+
+
     </script>
 </head>
 
@@ -170,18 +245,17 @@ require 'cliente_controller.php';
                 <h4>Visualizar / Alterar / Excluir Clientes:</h4>
                 <?php foreach ($cliente as $indice => $clientes) { ?>
                     <div class="card">
-                        <div class="card-body p-4" id="cliente_<?= $clientes->c00_codigo?>">
-                            <h5 class="card-title"><?php echo $clientes->c00_nome ?> </h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Codigo do cliente: <?php echo $clientes->c00_codigo ?></h6>
-                            <p class="card-text">Tipo de pessoa: <?php echo $clientes->tipo ?></p>
-                            <p class="card-text">Nº CPF/CNPJ/Outros: <?php echo $clientes->c00_cnpj ?></p>
-                            <p class="card-text">Estado: <?php echo $clientes->c00_estado ?></p>
-                            <p class="card-text">Data Nascimento: <?php echo $clientes->c00_data_nascimento ?></p>
-                            <button class="btn btn-danger" onclick="remover(<?= $clientes->c00_codigo ?>)">Excluir</button>
-                            <button class="btn btn-info" onclick="editarNome(<?=$clientes->c00_codigo?>, '<?=$clientes->c00_nome?>')">Editar nome</button>
-                            <button class="btn btn-info" onclick="editarNome(<?=$clientes->c00_codigo?>, <?=$clientes->c00_codigo?>)">Editar código</button>
-                            <button class="btn btn-info" onclick="editarPreco()">Editar tipo</button>
-                            <button class="btn btn-info" onclick="editarImposto()">Editar nº CPF/CNPJ</button>
+                        <div class="card-body p-4" id="cliente_<?=$clientes->c00_codigo?>">
+                            <h5 class="card-title"><?=$clientes->c00_nome?> </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Codigo do cliente: <?=$clientes->c00_codigo?></h6>
+                            <p class="card-text">Tipo de pessoa: <?=$clientes->tipo?></p>
+                            <p class="card-text">Nº CPF/CNPJ/Outros: <?=$clientes->c00_cnpj?></p>
+                            <p class="card-text">Estado: <?=$clientes->c00_estado?></p>
+                            <p class="card-text">Data Nascimento: <?=$clientes->c00_data_nascimento?></p>
+                            <button class="btn btn-danger" onclick="remover(<?=$clientes->c00_codigo?>)">Excluir</button>
+                            <button class="btn btn-info" onclick="editar(<?=$clientes->c00_codigo?>,'<?=$clientes->c00_nome?>')">Editar nome</button>
+                            <button class="btn btn-info" onclick="editar(<?=$clientes->c00_codigo?>,<?=$clientes->c00_codigo?>)">Editar código</button>
+                            <button class="btn btn-info" onclick="editarTipo(<?=$clientes->c00_codigo?>,'<?=$clientes->tipo?>',<?=$clientes->c00_cnpj?>)">Editar CPF/CNPJ</button>
                             <button class="btn btn-info" onclick="editarImposto()">Editar estado</button>
                             <button class="btn btn-info" onclick="editarImposto()">Editar nascimento</button>
                         </div>

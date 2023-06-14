@@ -3,7 +3,7 @@
     require "service_cliente.php";
     require "conexao.php";
 
-     $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
+    $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
     
     if ($acao == 'inserir') {
         $cliente = new Cliente();
@@ -32,7 +32,7 @@
         $service = new ServiceCliente($conexao, $cliente);
         $service->inserir();
 
-         header('location: controle_clientes.php?inclusao=1');
+        header('location: controle_clientes.php?inclusao=1');
 
     } elseif ($acao == 'recuperar') {
         $cliente = new Cliente();
@@ -51,12 +51,11 @@
         $service->remover(); 
         
         header('location: controle_clientes.php');
-    }  elseif ($acao = 'atualizar') {
-        $cliente = new Cliente();
 
+    }  elseif ($acao == 'atualizar') {
+        $cliente = new Cliente();
         $executado = false;
         if (is_numeric($_POST['cod']) && is_numeric($_POST['nome'])){
-            echo 'estamos no IF de editar código';
             $cliente->__set('id', $_POST['cod']);
             $cliente->__set('cod_cliente', $_POST['nome']);
             $executado = true;
@@ -87,13 +86,30 @@
         $conexao = new Conexao();
         $service = new ServiceCliente ($conexao, $cliente);
         
+        $service->atualizar();
 
-        $service->atualizarNome();
-
-        if($service->atualizarNome()){
+        if($service->atualizar()){
             header('location: controle_clientes.php');
         } else{
             echo '<br>';
         } 
-   } 
+    } elseif ($acao == 'atualizarTipo'){
+        $cliente = new Cliente();
+        $cliente->__set('pessoa',$_POST['tipo']);
+        $cliente->__set('cnpj',$_POST['cnpj']);
+        $cliente->__set('cod_cliente',$_POST['cod']);
+
+        $conexao = new Conexao();
+
+        $service = new ServiceCliente($conexao, $cliente);
+
+        $service->atualizar();
+
+        if($service->atualizar()){
+            header('location: controle_clientes.php');
+        } else{
+            echo '<br>';
+        }  
+
+    } 
 ?>

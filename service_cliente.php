@@ -41,7 +41,7 @@
             $stmt->execute();
         }
 
-        public function atualizarNome(){
+        public function atualizar(){
             $query = "UPDATE c00_cliente 
             SET c00_nome = IF(:nome <> '', :nome, c00_nome),
                 c00_codigo = IF(:cod <> '', :cod, c00_codigo),
