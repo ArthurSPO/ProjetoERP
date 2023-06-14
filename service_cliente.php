@@ -49,9 +49,10 @@
                 c00_cnpj = IF(:cnpj <> '', :cnpj, c00_cnpj),
                 c00_estado = IF(:estado <> '', :estado, c00_estado),
                 c00_data_nascimento = IF(:data <> '', :data, c00_data_nascimento)
-            WHERE c00_codigo = :cod";
+            WHERE c00_codigo = :cod OR c00_codigo = :id";
             $stmt = $this->conexao->prepare($query);
             $stmt->bindValue(':cod', $this->cliente->__get('cod_cliente'));
+            $stmt->bindValue(':id', $this->cliente->__get('id'));
             $stmt->bindValue(':nome', $this->cliente->__get('nome'));
             $stmt->bindValue(':pessoa', $this->cliente->__get('pessoa'));
             $stmt->bindValue(':cnpj', $this->cliente->__get('cnpj'));

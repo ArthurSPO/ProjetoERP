@@ -179,7 +179,7 @@ require 'cliente_controller.php';
                             <p class="card-text">Data Nascimento: <?php echo $clientes->c00_data_nascimento ?></p>
                             <button class="btn btn-danger" onclick="remover(<?= $clientes->c00_codigo ?>)">Excluir</button>
                             <button class="btn btn-info" onclick="editarNome(<?=$clientes->c00_codigo?>, '<?=$clientes->c00_nome?>')">Editar nome</button>
-                            <button class="btn btn-info" onclick="editarCod()">Editar código</button>
+                            <button class="btn btn-info" onclick="editarNome(<?=$clientes->c00_codigo?>, <?=$clientes->c00_codigo?>)">Editar código</button>
                             <button class="btn btn-info" onclick="editarPreco()">Editar tipo</button>
                             <button class="btn btn-info" onclick="editarImposto()">Editar nº CPF/CNPJ</button>
                             <button class="btn btn-info" onclick="editarImposto()">Editar estado</button>

@@ -2,6 +2,7 @@
 
     class Cliente{
         private $cod_cliente;
+        private $id;
         private $nome;
         private $pessoa;
         private $cnpj;

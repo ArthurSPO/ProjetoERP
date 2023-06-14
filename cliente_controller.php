@@ -53,27 +53,41 @@
         header('location: controle_clientes.php');
     }  elseif ($acao = 'atualizar') {
         $cliente = new Cliente();
-        if (!empty($_POST['cod'])) {
+
+        $executado = false;
+        if (is_numeric($_POST['cod']) && is_numeric($_POST['nome'])){
+            echo 'estamos no IF de editar código';
+            $cliente->__set('id', $_POST['cod']);
+            $cliente->__set('cod_cliente', $_POST['nome']);
+            $executado = true;
+        }
+        if (!$executado && !empty($_POST['cod'])) {
             $cliente->__set('cod_cliente', $_POST['cod']);
         }
-        if (!empty($_POST['nome'])) {
+        
+        if (!$executado && !empty($_POST['nome'])) {
             $cliente->__set('nome', $_POST['nome']);
         }
-        if (!empty($_POST['estado'])) {
+        
+        if (!$executado && !empty($_POST['estado'])) {
             $cliente->__set('estado', $_POST['estado']);
         }
-        if (!empty($_POST['pessoa'])) {
+        
+        if (!$executado && !empty($_POST['pessoa'])) {
             $cliente->__set('pessoa', $_POST['tipo']);
         }
-        if (!empty($_POST['data'])) {
+        
+        if (!$executado && !empty($_POST['data'])) {
             $cliente->__set('data_nascimento', $_POST['data']);
         }
-        if (!empty($_POST['cnpj'])) {
+        
+        if (!$executado && !empty($_POST['cnpj'])) {
             $cliente->__set('cnpj', $_POST['cnpj']);
         }
         $conexao = new Conexao();
         $service = new ServiceCliente ($conexao, $cliente);
         
+
         $service->atualizarNome();
 
         if($service->atualizarNome()){
@@ -82,5 +96,4 @@
             echo '<br>';
         } 
    } 
-     //if (empty($_POST['preco']) && empty($_POST['imposto']) && empty($_POST['id'])){ //Edita descrição
 ?>
