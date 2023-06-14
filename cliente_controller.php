@@ -51,5 +51,21 @@
         $service->remover(); 
         
         header('location: controle_clientes.php');
-    } 
+    }  elseif ($acao = 'atualizar') {
+        $cliente = new Cliente();
+        //if (empty($_POST['preco']) && empty($_POST['imposto']) && empty($_POST['id'])){ //Edita descrição
+            $cliente->__set('cod_cliente',$_POST['cod']);
+            $cliente->__set('nome',$_POST['nome']);   
+            $conexao = new Conexao();
+            $service = new ServiceCliente ($conexao, $cliente);
+            
+            $service->atualizarNome();
+
+        if($service->atualizarNome()){
+            header('location: controle_clientes.php');
+        } else{
+            echo '<br>';
+        } 
+   } 
+     
 ?>

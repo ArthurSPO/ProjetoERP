@@ -50,7 +50,7 @@
                             <a href="controle_clientes.php" class="nav-link">Gerenciar Clientes</a>
                         </li>
                         <li class="nav-item">
-                            <a href="lista_total.php" class="nav-link">Produtos e Clientes</a>
+                            <a href="lista_total.php" class="nav-link text-center">Produtos e Clientes</a>
                         </li>
                     </ul>
                 </div>

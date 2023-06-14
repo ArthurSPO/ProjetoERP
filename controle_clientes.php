@@ -31,6 +31,41 @@ require 'cliente_controller.php';
         function remover(cod) {
             location.href = 'controle_clientes.php?acao=remover&c00_codigo=' + cod;
         }
+
+        function editarNome(cod, texto) {
+            let form = document.createElement('form')
+            form.action = 'cliente_controller.php?acao=atualizar'
+            form.method = 'post'
+
+            let input = document.createElement('input')
+            input.type = 'text'
+            input.name = 'nome'
+            input.className = 'form-control'
+            input.value = texto
+
+            let inputCod = document.createElement('input')
+            inputCod.type = 'hidden'
+            inputCod.name = 'cod'
+            inputCod.value = cod
+
+            let button = document.createElement('button')
+            button.type = 'submit'
+            button.className = 'btn btn-info'
+            button.innerHTML = 'Atualizar'
+
+
+            form.appendChild(input)
+            form.appendChild(button)
+            form.appendChild(inputCod)
+
+            console.log(form)
+
+            let cliente = document.getElementById('cliente_' + cod);
+
+            cliente.innerHTML = ''
+
+            cliente.insertBefore(form, cliente[0])
+        }
     </script>
 </head>
 
@@ -64,7 +99,7 @@ require 'cliente_controller.php';
                             <a href="controle_clientes.php" class="nav-link fw-bold">Gerenciar Clientes</a>
                         </li>
                         <li class="nav-item">
-                            <a href="lista_total.php" class="nav-link">Produtos e Clientes</a>
+                            <a href="lista_total.php" class="nav-link text-center">Produtos e Clientes</a>
                         </li>
                     </ul>
                 </div>
@@ -135,20 +170,23 @@ require 'cliente_controller.php';
                 <h4>Visualizar / Alterar / Excluir Clientes:</h4>
                 <?php foreach ($cliente as $indice => $clientes) { ?>
                     <div class="card">
-                        <div class="card-body p-4">
+                        <div class="card-body p-4" id="cliente_<?= $clientes->c00_codigo?>">
                             <h5 class="card-title"><?php echo $clientes->c00_nome ?> </h5>
                             <h6 class="card-subtitle mb-2 text-muted">Codigo do cliente: <?php echo $clientes->c00_codigo ?></h6>
                             <p class="card-text">Tipo de pessoa: <?php echo $clientes->tipo ?></p>
-                            <p class="card-text">Nº CPF/CNP/Outros: <?php echo $clientes->c00_cnpj ?></p>
+                            <p class="card-text">Nº CPF/CNPJ/Outros: <?php echo $clientes->c00_cnpj ?></p>
                             <p class="card-text">Estado: <?php echo $clientes->c00_estado ?></p>
                             <p class="card-text">Data Nascimento: <?php echo $clientes->c00_data_nascimento ?></p>
                             <button class="btn btn-danger" onclick="remover(<?= $clientes->c00_codigo ?>)">Excluir</button>
+                            <button class="btn btn-info" onclick="editarNome(<?=$clientes->c00_codigo?>, '<?=$clientes->c00_nome?>')">Editar nome</button>
+                            <button class="btn btn-info" onclick="editarCod()">Editar código</button>
+                            <button class="btn btn-info" onclick="editarPreco()">Editar tipo</button>
+                            <button class="btn btn-info" onclick="editarImposto()">Editar nº CPF/CNPJ</button>
+                            <button class="btn btn-info" onclick="editarImposto()">Editar estado</button>
+                            <button class="btn btn-info" onclick="editarImposto()">Editar nascimento</button>
                         </div>
                     </div>
                 <?php } ?>
-
-
-
             </div>
             <div class="col-md-2">
 

@@ -41,6 +41,13 @@
             $stmt->execute();
         }
 
+        public function atualizarNome(){
+            $query = 'update c00_cliente set c00_nome = :nome where c00_codigo = :cod';
+            $stmt = $this->conexao->prepare($query);
+            $stmt->bindValue(':nome', $this->cliente->__get('nome'));
+            $stmt->bindValue(':cod', $this->cliente->__get('cod_cliente'));
+            return $stmt->execute();
+        }
     }
 
 ?>
