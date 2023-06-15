@@ -23,7 +23,9 @@
         }
 
         public function recuperar(){
-            $query = 'select p00_codigo, p00_descricao, p00_preco, p00_imposto from p00_produto';
+            $query = 'SELECT p.*, c.c00_nome
+            FROM p00_produto p
+            LEFT JOIN c00_cliente c ON p.p00_lig = c.c00_codigo';
             $stmt = $this->conexao->prepare($query);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -64,5 +66,17 @@
             $stmt->bindValue(':cod', $this->produto->__get('cod'));
             return $stmt->execute();
         }
+        public function vincular(){
+            $query = 'update p00_produto set p00_lig = :lig WHERE :cod = p00_codigo';
+            $stmt = $this->conexao->prepare($query);
+            $stmt->bindValue(':lig', $this->produto->__get('lig'));
+            $stmt->bindValue(':cod', $this->produto->__get('cod'));
+            $stmt->execute();
+        }
+
+        // public function joinName(){
+        //     $query = 'select p00_lig from p00_produto as p
+        //     left join '
+        // }
     }
 ?>

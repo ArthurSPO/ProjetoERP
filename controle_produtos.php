@@ -1,42 +1,9 @@
 <?php
 $acao = 'recuperar';
 require 'produto_controller.php';
-require 'model.cliente.php';
-// $newAcao = 'recuperarLig';
-// require 'ligacao.php';
 
-// $cliente = new Cliente();
+session_start();
 
-// echo '<pre>';
-// print_r($cliente);
-// echo '</pre>';
-
-// echo '<pre>';
-// print_r($produto);
-// echo '</pre>';
-
-        session_start();
-
-        echo '<pre>';
-        print_r($_SESSION);
-        echo '</pre>';
-        echo $_SESSION['cliente'][0]->c00_codigo;
-        echo '<hr>';
-
-        foreach ($_SESSION['cliente'] as $key => $clientes) {
-            echo $clientes->c00_codigo;
-            echo '<br>';
-        }
-
-
-
-// foreach ($cliente as $key => $clientes) {
-//     echo '<pre>';
-//     print_r($cliente);
-//     print_r($clientes);
-//     echo '</pre>';
-
-// }
 ?>
 
 <!DOCTYPE html>
@@ -209,6 +176,8 @@ require 'model.cliente.php';
 
             produto.insertBefore(form, produto[0])
         }
+
+
     </script>
 
 </head>
@@ -297,7 +266,7 @@ require 'model.cliente.php';
                             <h6 class="card-subtitle mb-2 text-muted">Codigo do produto: <?php echo $produto->p00_codigo ?></h6>
                             <p class="card-text">Preço do produto: <?php echo $produto->p00_preco ?></p>
                             <p class="card-text">Imposto: <?php echo $produto->p00_imposto ?>%</p>
-                            <p class="card-text">Cliente Vinculado: </p>
+                            <p class="card-text">Cliente Vinculado: <?= $produto->c00_nome ?> (<?=$produto->p00_lig?>)</p>
 
                             <button class="btn btn-danger" onclick="remover(<?= $produto->p00_codigo ?>)">Excluir</button>
                             <button class="btn btn-info" onclick="editarDescricao(<?= $produto->p00_codigo ?>, '<?= $produto->p00_descricao ?>')">Editar Produto</button>
@@ -306,27 +275,23 @@ require 'model.cliente.php';
                             <button class="btn btn-info" onclick="editarImposto(<?= $produto->p00_codigo ?>, <?= $produto->p00_imposto ?>)">Editar Imposto</button>
                             <p class="card-text"></p>
                             <p class="card-text">Vincular Cliente:</p>
-                            <form action="" method="post">
-                            <select name="" id="">
+                            <form action="produto_controller.php?acao=recuperarLig" method="post">
+                            <select name="lig" id="">
                             <?php $controle = false; ?>
                             <?php foreach ($_SESSION['cliente'] as $key => $clientes) {           
                                 if ($controle == false){ ?>       
                                 <option value="">Vazio</option>
                                 <?php $controle = true;
                                 } ?>
-                                <option value="cod"><?php echo $clientes->c00_codigo ?></option>    
-                             <?php } ?>                                
+                                <option name="lig" value="<?=$clientes->c00_codigo?>"><?php echo $clientes->c00_codigo ?></option>    
+                             <?php } ?>
+                             <input type="hidden" name="cod_prod" value="<?= $produto->p00_codigo ?>">                                
                             </select>
                             <button class="btn btn-warning">Vincular</button>
                             </form>
                         </div>
                     </div>
                 <?php } ?>
-
-        <!-- foreach ($_SESSION['cliente'] as $key => $clientes) {
-            echo $clientes->c00_codigo;
-            echo '<br>';
-        } -->
             </div>
         </div>
     </div>

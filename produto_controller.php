@@ -36,7 +36,7 @@
         $service->remover(); 
         
         header('location: controle_produtos.php');
-    } elseif ($acao = 'atualizar') {
+    } elseif ($acao == 'atualizar') {
         $produto = new Produto();
         if (empty($_POST['preco']) && empty($_POST['imposto']) && empty($_POST['id'])){ //Edita descrição
             $produto->__set('cod',$_POST['cod']);
@@ -90,8 +90,27 @@
             } else{
                 echo '<br>';
             }
-        }
+        } 
         
-        $service = new Service ($conexao, $produto);
+    } elseif ($acao == 'recuperarLig') {
+        $produto = new Produto();
+        $produto->__set('lig', $_POST['lig']);
+        $produto->__set('cod', $_POST['cod_prod']);
+        $conexao = new Conexao();
+        $service = new Service($conexao, $produto);
+
+        $service->vincular();
+
+        //$service->
+        
+        
+        header('location: controle_produtos.php');
+        // echo '<pre>';
+        // print_r($service);
+        // echo '</pre>';
+
+        // echo '<pre>';
+        // print_r($_POST);
+        // echo '</pre>';
     }
 ?>

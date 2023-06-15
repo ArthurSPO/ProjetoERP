@@ -75,11 +75,12 @@ require 'produto_controller.php';
 
                 <?php foreach ($produtos as $indice => $produto) { ?>
                     <div class="card">
-                        <div class="card-body p-4">
+                        <div class="card-body p-4" id="produto_<?= $produto->p00_codigo ?>">
                             <h5 class="card-title"><?php echo $produto->p00_descricao  ?> </h5>
                             <h6 class="card-subtitle mb-2 text-muted">Codigo do produto: <?php echo $produto->p00_codigo ?></h6>
                             <p class="card-text">Preço do produto: <?php echo $produto->p00_preco ?></p>
                             <p class="card-text">Imposto: <?php echo $produto->p00_imposto ?>%</p>
+                            <p class="card-text">Cliente Vinculado: <?= $produto->c00_nome ?> (<?=$produto->p00_lig?>)</p>        
                         </div>
                     </div>
                 <?php } ?>
