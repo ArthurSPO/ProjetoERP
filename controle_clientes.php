@@ -31,8 +31,8 @@ require 'cliente_controller.php';
         function remover(cod) {
             location.href = 'controle_clientes.php?acao=remover&c00_codigo=' + cod;
         }
-
-        function editar(cod, texto) {
+        //Edita Nome e código
+        function editar(cod, texto) { 
             let form = document.createElement('form')
             form.action = 'cliente_controller.php?acao=atualizar'
             form.method = 'post'
@@ -97,7 +97,6 @@ require 'cliente_controller.php';
                 }
             selectAtributo1.appendChild(option3);
 
-
             // Campo de entrada para CNPJ
             let inputCnpj = document.createElement('input');
             inputCnpj.type = 'text';
@@ -110,12 +109,6 @@ require 'cliente_controller.php';
             form.action = 'cliente_controller.php?acao=atualizarTipo';
             form.method = 'post';
 
-            // let input = document.createElement('input');
-            // input.type = 'text';
-            // input.name = 'tipo';
-            // input.className = 'form-control';
-            // input.value = tipo;
-
             let inputCod = document.createElement('input');
             inputCod.type = 'hidden';
             inputCod.name = 'cod';
@@ -127,7 +120,6 @@ require 'cliente_controller.php';
             button.innerHTML = 'Atualizar';
 
             // Adicione os elementos ao formulário
-           // form.appendChild(input);
             form.appendChild(selectAtributo1);
             form.appendChild(inputCnpj);
             form.appendChild(button);
@@ -139,8 +131,75 @@ require 'cliente_controller.php';
             cliente.innerHTML = '';
             cliente.insertBefore(form, cliente[0]);
         }       
+        function editarEstado(cod, texto) { 
+            let form = document.createElement('form')
+            form.action = 'cliente_controller.php?acao=atualizar'
+            form.method = 'post'
+
+            let input = document.createElement('input')
+            input.type = 'text'
+            input.name = 'estado'
+            input.className = 'form-control'
+            input.value = texto
+
+            let inputCod = document.createElement('input')
+            inputCod.type = 'hidden'
+            inputCod.name = 'cod'
+            inputCod.value = cod
+
+            let button = document.createElement('button')
+            button.type = 'submit'
+            button.className = 'btn btn-info'
+            button.innerHTML = 'Atualizar'
 
 
+            form.appendChild(input)
+            form.appendChild(button)
+            form.appendChild(inputCod)
+
+            console.log(form)
+
+            let cliente = document.getElementById('cliente_' + cod);
+
+            cliente.innerHTML = ''
+
+            cliente.insertBefore(form, cliente[0])
+        }
+
+        function editarNascimento(cod, data) { 
+            let form = document.createElement('form')
+            form.action = 'cliente_controller.php?acao=atualizar'
+            form.method = 'post'
+
+            let input = document.createElement('input')
+            input.type = 'date'
+            input.name = 'data'
+            input.className = 'form-control'
+            input.value = data
+
+            let inputCod = document.createElement('input')
+            inputCod.type = 'hidden'
+            inputCod.name = 'cod'
+            inputCod.value = cod
+
+            let button = document.createElement('button')
+            button.type = 'submit'
+            button.className = 'btn btn-info'
+            button.innerHTML = 'Atualizar'
+
+
+            form.appendChild(input)
+            form.appendChild(button)
+            form.appendChild(inputCod)
+
+            console.log(form)
+
+            let cliente = document.getElementById('cliente_' + cod);
+
+            cliente.innerHTML = ''
+
+            cliente.insertBefore(form, cliente[0])
+        }
     </script>
 </head>
 
@@ -256,8 +315,8 @@ require 'cliente_controller.php';
                             <button class="btn btn-info" onclick="editar(<?=$clientes->c00_codigo?>,'<?=$clientes->c00_nome?>')">Editar nome</button>
                             <button class="btn btn-info" onclick="editar(<?=$clientes->c00_codigo?>,<?=$clientes->c00_codigo?>)">Editar código</button>
                             <button class="btn btn-info" onclick="editarTipo(<?=$clientes->c00_codigo?>,'<?=$clientes->tipo?>',<?=$clientes->c00_cnpj?>)">Editar CPF/CNPJ</button>
-                            <button class="btn btn-info" onclick="editarImposto()">Editar estado</button>
-                            <button class="btn btn-info" onclick="editarImposto()">Editar nascimento</button>
+                            <button class="btn btn-info" onclick="editarEstado(<?=$clientes->c00_codigo?>,'<?=$clientes->c00_estado?>')">Editar estado</button>
+                            <button class="btn btn-info" onclick="editarNascimento(<?=$clientes->c00_codigo?>,<?=$clientes->c00_data_nascimento?>)">Editar nascimento</button>
                         </div>
                     </div>
                 <?php } ?>
