@@ -112,4 +112,8 @@
         }  
 
     } 
+
+    session_start();
+
+    $_SESSION['cliente'] = $cliente;
 ?>
