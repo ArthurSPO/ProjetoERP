@@ -1,9 +1,9 @@
 <?php 
+
     require "model.produto.php";
     require "service.php";
     require "conexao.php";
-    
-    
+
 
     $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
     
@@ -27,6 +27,9 @@
 
         $service = new Service ($conexao, $produto);
         $produtos = $service->recuperar();
+        
+        $_SESSION['produto'] = $produtos;
+        
 
     } elseif ($acao == 'remover'){
         $produto = new Produto();

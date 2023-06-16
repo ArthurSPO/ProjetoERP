@@ -381,6 +381,17 @@ require 'cliente_controller.php';
 
             ?>
 
+            <hr>
+            <h2>tentativa 2 Vinculo</h2>
+            <?php 
+            foreach ($_SESSION['produto'] as $key => $produtos) { ?>
+            <p class="card-text">Produto Vinculado: <?=$produtos->p00_descricao?> (<?=$produtos->p00_lig?>)</p>
+            
+
+             <?php }
+            ?>
+
+
             <br>
             <button class="btn btn-danger" onclick="remover(<?= $clientes->c00_codigo ?>)">Excluir</button>
             <button class="btn btn-info" onclick="editar(<?= $clientes->c00_codigo ?>,'<?= $clientes->c00_nome ?>')">Editar nome</button>

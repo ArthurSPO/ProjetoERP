@@ -40,6 +40,8 @@
 
         $service = new ServiceCliente ($conexao, $cliente);
         $cliente = $service->recuperar();
+        $_SESSION['cliente'] = $cliente;
+
 
      } elseif ($acao == 'remover'){
         $cliente = new Cliente();
@@ -113,24 +115,33 @@
 
     } elseif ($acao == 'recuperarLig') {
         $cliente = new Cliente();
-        if (empty($_POST['lig'])){
-            $cliente->__set('cod_cliente',$_POST['cod_cliente']);
-            $conexao = new Conexao();
-            $service = new ServiceCliente($conexao, $cliente);
-            $service->excluirVinculo();
+        $cliente->__set('lig', $_POST['lig']);
+        $cliente->__set('cod', $_POST['cod_client']);
+        $conexao = new Conexao();
+        $service = new ServiceCliente($conexao, $cliente);
 
-            header('location: lista_produtos.php');
+        $service->vincular();
+  
+        // header('location: controle_produtos.php');
+        // $cliente = new Cliente();
+        // if (empty($_POST['lig'])){
+        //     $cliente->__set('cod_cliente',$_POST['cod_cliente']);
+        //     $conexao = new Conexao();
+        //     $service = new ServiceCliente($conexao, $cliente);
+           // $service->excluirVinculo();
 
-        } else {
-            $cliente = new Cliente();
-            $cliente->__set('lig', $_POST['lig']);
-            $cliente->__set('cod_cliente', $_POST['cod_client']);
-            $conexao = new Conexao();
-            $service = new ServiceCliente($conexao, $cliente);
-            $service->vincular();
+            header('location: controle_clientes.php');
+
+        // } else {
+        //     $cliente = new Cliente();
+        //     $cliente->__set('lig', $_POST['lig']);
+        //     $cliente->__set('cod_cliente', $_POST['cod_client']);
+        //     $conexao = new Conexao();
+        //     $service = new ServiceCliente($conexao, $cliente);
+        //     $service->vincular();
       
-            header('location: lista_produtos.php');
-        }
+        //     header('location: lista_produtos.php');
+        // }
 
   
 
@@ -138,5 +149,7 @@
     }
 
     session_start();
+
+    $_SESSION['cliente'] = $cliente;
 
 ?>
