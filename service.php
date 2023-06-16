@@ -73,10 +73,5 @@
             $stmt->bindValue(':cod', $this->produto->__get('cod'));
             $stmt->execute();
         }
-
-        // public function joinName(){
-        //     $query = 'select p00_lig from p00_produto as p
-        //     left join '
-        // }
     }
 ?>

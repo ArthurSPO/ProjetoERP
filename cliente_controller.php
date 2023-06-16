@@ -112,27 +112,31 @@
         }  
 
     } elseif ($acao == 'recuperarLig') {
-        echo 'estamos no recuperarLig';
-        
-        // $produto = new Produto();
-        // $produto->__set('lig', $_POST['lig']);
-        // $produto->__set('cod', $_POST['cod_prod']);
-        // $conexao = new Conexao();
-        // $service = new Service($conexao, $produto);
+        $cliente = new Cliente();
+        if (empty($_POST['lig'])){
+            $cliente->__set('cod_cliente',$_POST['cod_cliente']);
+            $conexao = new Conexao();
+            $service = new ServiceCliente($conexao, $cliente);
+            $service->excluirVinculo();
 
-        // $service->vincular();
+            header('location: lista_produtos.php');
+
+        } else {
+            $cliente = new Cliente();
+            $cliente->__set('lig', $_POST['lig']);
+            $cliente->__set('cod_cliente', $_POST['cod_client']);
+            $conexao = new Conexao();
+            $service = new ServiceCliente($conexao, $cliente);
+            $service->vincular();
+      
+            header('location: lista_produtos.php');
+        }
+
   
-        // header('location: controle_produtos.php');
-        // echo '<pre>';
-        // print_r($service);
-        // echo '</pre>';
 
-        // echo '<pre>';
-        // print_r($_POST);
-        // echo '</pre>';
+
     }
 
     session_start();
 
-    $_SESSION['cliente'] = $cliente;
 ?>

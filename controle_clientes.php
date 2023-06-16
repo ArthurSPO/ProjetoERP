@@ -2,13 +2,6 @@
 $acao = 'recuperar';
 require 'cliente_controller.php';
 
-        echo '<pre>';
-        print_r($_SESSION['cliente']);
-        echo '</pre>';
-        
-        echo '<pre>';
-        print_r($_SESSION['produto']);
-        echo '</pre>';
 
     // foreach ($_SESSION as $key => $value) {
     //     if($value->p00_lig == $value->c00_codigo){
@@ -361,62 +354,61 @@ require 'cliente_controller.php';
                 </form>
                 <br>
                 <h4>Visualizar / Alterar / Excluir Clientes:</h4>
-                <?php foreach ($cliente as $indice => $clientes) { ?>
-                    <div class="card">
-                        <div class="card-body p-4" id="cliente_<?=$clientes->c00_codigo?>">
-                            <h5 class="card-title"><?=$clientes->c00_nome?> </h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Codigo do cliente: <?=$clientes->c00_codigo?></h6>
-                            <p class="card-text">Tipo de pessoa: <?=$clientes->tipo?></p>
-                            <p class="card-text">Nº CPF/CNPJ/Outros: <?=$clientes->c00_cnpj?></p>
-                            <p class="card-text">Estado: <?=$clientes->c00_estado?></p>
-                            <p class="card-text">Data Nascimento: <?=$clientes->c00_data_nascimento?></p>
-                            <p class="card-text">Produto(s) Vinculado:</p>
+<?php foreach ($cliente as $indice => $clientes) { ?>
+    <div class="card">
+        <div class="card-body p-4" id="cliente_<?= $clientes->c00_codigo ?>">
+            <h5 class="card-title"><?= $clientes->c00_nome ?> </h5>
+            <h6 class="card-subtitle mb-2 text-muted">Codigo do cliente: <?= $clientes->c00_codigo ?></h6>
+            <p class="card-text">Tipo de pessoa: <?= $clientes->tipo ?></p>
+            <p class="card-text">Nº CPF/CNPJ/Outros: <?= $clientes->c00_cnpj ?></p>
+            <p class="card-text">Estado: <?= $clientes->c00_estado ?></p>
+            <p class="card-text">Data Nascimento: <?= $clientes->c00_data_nascimento ?></p>
+            <p class="card-text">Produto(s) Vinculado:</p>
 
-                            <?php
+            <?php
+            $var_controle = false;
+            foreach ($_SESSION['produto'] as $key => $produtos) {
+                if ($produtos->c00_nome == $clientes->c00_nome) {
+                    echo $produtos->p00_descricao . '('.$produtos->p00_codigo.')';
+                    echo '<br>';
+                    $var_controle = true;
+                }
+            }
 
-                            $var_controle = false;
-                            foreach ($_SESSION['produto'] as $key => $produtos) {
-                                if($produtos->c00_nome == $clientes->c00_nome){
-                                    echo $produtos->p00_descricao;
-                                    echo '<br>';
-                                    $var_controle = true;
-                                } elseif($produtos->c00_nome != $clientes->c00_nome &&  $var_controle = false){
-                                    echo 'Vazio';
-                                }
-                            }
-                            
-                             ?>
-                            <br>
-                            <button class="btn btn-danger" onclick="remover(<?=$clientes->c00_codigo?>)">Excluir</button>
-                            <button class="btn btn-info" onclick="editar(<?=$clientes->c00_codigo?>,'<?=$clientes->c00_nome?>')">Editar nome</button>
-                            <button class="btn btn-info" onclick="editar(<?=$clientes->c00_codigo?>,<?=$clientes->c00_codigo?>)">Editar código</button>
-                            <button class="btn btn-info" onclick="editarTipo(<?=$clientes->c00_codigo?>,'<?=$clientes->tipo?>',<?=$clientes->c00_cnpj?>)">Editar CPF/CNPJ</button>
-                            <button class="btn btn-info" onclick="editarEstado(<?=$clientes->c00_codigo?>,'<?=$clientes->c00_estado?>')">Editar estado</button>
-                            <button class="btn btn-info" onclick="editarNascimento(<?=$clientes->c00_codigo?>,<?=$clientes->c00_data_nascimento?>)">Editar nascimento</button>
-                            <br>
-                            <br>
-                            <p class="card-text">Vincular Produto:</p>
-                            <form action="cliente_controller.php?acao=recuperarLig" method="post">
-                            <select name="lig" id="">
-                            <?php $controle = false; ?>
-                            <?php foreach ($_SESSION['produto'] as $key => $produtos) {   
-                                echo $key;
-                                if ($controle == false){ ?>       
-                                <option value="">Vazio</option>
-                                <option value="">Teste</option>
-                                
-                                <?php $controle = true;
-                                } ?>
-                                <option name="lig" value="<?=$produtos->p00_codigo?>"><?php echo $produtos->p00_codigo ?></option>    
-                             
-                             <input type="hidden" name="cod_client" value="<?= $clientes->c00_codigo ?>">                                
-                            </select>
-                            <button class="btn btn-warning">Vincular</button>
-                            </form>
+            if (!$var_controle) {
+                echo 'Vazio';
+            }
 
-                <?php } } ?>
-                    </div>
-                </div>
+            ?>
+
+            <br>
+            <button class="btn btn-danger" onclick="remover(<?= $clientes->c00_codigo ?>)">Excluir</button>
+            <button class="btn btn-info" onclick="editar(<?= $clientes->c00_codigo ?>,'<?= $clientes->c00_nome ?>')">Editar nome</button>
+            <button class="btn btn-info" onclick="editar(<?= $clientes->c00_codigo ?>,<?= $clientes->c00_codigo ?>)">Editar código</button>
+            <button class="btn btn-info" onclick="editarTipo(<?= $clientes->c00_codigo ?>,'<?= $clientes->tipo ?>',<?= $clientes->c00_cnpj ?>)">Editar CPF/CNPJ</button>
+            <button class="btn btn-info" onclick="editarEstado(<?= $clientes->c00_codigo ?>,'<?= $clientes->c00_estado ?>')">Editar estado</button>
+            <button class="btn btn-info" onclick="editarNascimento(<?= $clientes->c00_codigo ?>,<?= $clientes->c00_data_nascimento ?>)">Editar nascimento</button>
+            <br>
+            <br>
+            <p class="card-text">Vincular Produto:</p>
+            <form action="cliente_controller.php?acao=recuperarLig" method="post">
+                <select name="lig" id="">
+                    <?php $controle = false; ?>
+                    <?php foreach ($_SESSION['produto'] as $key => $produtos) {   
+                        if ($controle == false){ ?>       
+                            <option value="">Vazio</option>
+                            <?php $controle = true;
+                        } ?>
+                        <option name="lig" value="<?= $produtos->p00_codigo ?>"><?php echo $produtos->p00_codigo ?></option>
+                    <?php } ?>
+                </select>
+                <button class="btn btn-warning">Vincular</button>
+                <input type="hidden" name="cod_client" value="<?= $clientes->c00_codigo ?>">                                
+            </form>
+        </div>
+    </div>
+<?php } ?>
+
             </div>
             <div class="col-md-2">
 
