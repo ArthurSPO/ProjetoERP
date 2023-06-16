@@ -2,8 +2,6 @@
 $acao = 'recuperar';
 require 'produto_controller.php';
 
-session_start();
-
 ?>
 
 <!DOCTYPE html>

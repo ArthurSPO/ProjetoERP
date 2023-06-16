@@ -2,6 +2,8 @@
     require "model.produto.php";
     require "service.php";
     require "conexao.php";
+    
+    
 
     $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
     
@@ -100,10 +102,7 @@
         $service = new Service($conexao, $produto);
 
         $service->vincular();
-
-        //$service->
-        
-        
+  
         header('location: controle_produtos.php');
         // echo '<pre>';
         // print_r($service);
@@ -113,4 +112,8 @@
         // print_r($_POST);
         // echo '</pre>';
     }
+
+    session_start();
+
+    $_SESSION['produto'] = $produtos;
 ?>

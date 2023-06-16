@@ -9,6 +9,7 @@
         private $cnpj;
         private $estado;
         private $data_nascimento;
+        private $lig;
 
     public function __get($atributo){
         return $this->$atributo;

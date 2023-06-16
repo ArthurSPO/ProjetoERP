@@ -111,7 +111,26 @@
             echo '<br>';
         }  
 
-    } 
+    } elseif ($acao == 'recuperarLig') {
+        echo 'estamos no recuperarLig';
+        
+        // $produto = new Produto();
+        // $produto->__set('lig', $_POST['lig']);
+        // $produto->__set('cod', $_POST['cod_prod']);
+        // $conexao = new Conexao();
+        // $service = new Service($conexao, $produto);
+
+        // $service->vincular();
+  
+        // header('location: controle_produtos.php');
+        // echo '<pre>';
+        // print_r($service);
+        // echo '</pre>';
+
+        // echo '<pre>';
+        // print_r($_POST);
+        // echo '</pre>';
+    }
 
     session_start();
 

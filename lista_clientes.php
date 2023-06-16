@@ -81,7 +81,7 @@ require 'cliente_controller.php';
                             <p class="card-text">Nº CPF/CNP/Outros: <?php echo $clientes->c00_cnpj ?></p>
                             <p class="card-text">Estado: <?php echo $clientes->c00_estado ?></p>
                             <p class="card-text">Data Nascimento: <?php echo $clientes->c00_data_nascimento ?></p>
-
+                            <p class="card-text">Produto Vinculado:</p>        
                         </div>
                     </div>
                 <?php } ?>
