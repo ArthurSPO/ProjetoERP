@@ -1,12 +1,7 @@
 <?php
 $acao = 'recuperar';
-require 'cliente_controller.php';
-
-  
-?>
-
-
-
+require 'cliente_controller.php';?>
+ 
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -306,31 +301,29 @@ require 'cliente_controller.php';
                 </form>
                 <br>
                 <h4>Visualizar / Alterar / Excluir Clientes:</h4>
-<?php foreach ($cliente as $indice => $clientes) { ?>
-    <div class="card">
-        <div class="card-body p-4" id="cliente_<?= $clientes->c00_codigo ?>">
-            <h5 class="card-title"><?= $clientes->c00_nome ?> </h5>
-            <h6 class="card-subtitle mb-2 text-muted">Codigo do cliente: <?= $clientes->c00_codigo ?></h6>
-            <p class="card-text">Tipo de pessoa: <?= $clientes->tipo ?></p>
-            <p class="card-text">Nº CPF/CNPJ/Outros: <?= $clientes->c00_cnpj ?></p>
-            <p class="card-text">Estado: <?= $clientes->c00_estado ?></p>
-            <p class="card-text">Data Nascimento: <?= $clientes->c00_data_nascimento ?></p>
-            <p class="card-text">Produto(s) Vinculado:</p>
+                <?php foreach ($cliente as $indice => $clientes) { ?>
+                    <div class="card">
+                        <div class="card-body p-4" id="cliente_<?= $clientes->c00_codigo ?>">
+                            <h5 class="card-title"><?= $clientes->c00_nome ?> </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Codigo do cliente: <?= $clientes->c00_codigo ?></h6>
+                            <p class="card-text">Tipo de pessoa: <?= $clientes->tipo ?></p>
+                            <p class="card-text">Nº CPF/CNPJ/Outros: <?= $clientes->c00_cnpj ?></p>
+                            <p class="card-text">Estado: <?= $clientes->c00_estado ?></p>
+                            <p class="card-text">Data Nascimento: <?= $clientes->c00_data_nascimento ?></p>
+                            <p class="card-text">Produto(s) Vinculado:</p>
 
-            <?php
-            $var_controle = false;
-            foreach ($_SESSION['produto'] as $key => $produtos) {
-                if ($produtos->c00_nome == $clientes->c00_nome) {
-                    echo $produtos->p00_descricao . '('.$produtos->p00_codigo.')';
-                    echo '<br>';
-                    $var_controle = true;
-                }
-            }
-            if (!$var_controle) {
-                echo 'Vazio';
-            }?>
-            
-   
+                            <?php
+                            $var_controle = false;
+                            foreach ($_SESSION['produto'] as $key => $produtos) {
+                                if ($produtos->c00_nome == $clientes->c00_nome) {
+                                    echo $produtos->p00_descricao . '('.$produtos->p00_codigo.')';
+                                    echo '<br>';
+                                    $var_controle = true;
+                                }
+                            }
+                            if (!$var_controle) {
+                                echo 'Vazio';
+                            }?>   
             <br>
             <button class="btn btn-danger" onclick="remover(<?= $clientes->c00_codigo ?>)">Excluir</button>
             <button class="btn btn-info" onclick="editar(<?= $clientes->c00_codigo ?>,'<?= $clientes->c00_nome ?>')">Editar nome</button>

@@ -1,7 +1,5 @@
 <?php
-
-    
-    
+ 
     class Produto{
 
         private $cod;

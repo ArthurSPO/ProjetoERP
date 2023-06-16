@@ -1,8 +1,6 @@
 <?php
 $acao = 'recuperar';
-require 'produto_controller.php';
-
-?>
+require 'produto_controller.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -71,7 +69,6 @@ require 'produto_controller.php';
             let form = document.createElement('form')
             form.action = 'produto_controller.php?acao=atualizar'
             form.method = 'post'
-            // form.className = 'w-75'
 
             let input = document.createElement('input')
             input.type = 'text'
@@ -107,7 +104,6 @@ require 'produto_controller.php';
             let form = document.createElement('form')
             form.action = 'produto_controller.php?acao=atualizar'
             form.method = 'post'
-            // form.className = 'w-75'
 
             let input = document.createElement('input')
             input.type = 'text'
@@ -143,7 +139,6 @@ require 'produto_controller.php';
             let form = document.createElement('form')
             form.action = 'produto_controller.php?acao=atualizar'
             form.method = 'post'
-            // form.className = 'w-75'
 
             let input = document.createElement('input')
             input.type = 'text'
@@ -175,9 +170,7 @@ require 'produto_controller.php';
             produto.insertBefore(form, produto[0])
         }
 
-
     </script>
-
 </head>
 
 <body>

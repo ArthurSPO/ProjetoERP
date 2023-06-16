@@ -1,7 +1,6 @@
 <?php
 $acao = 'recuperar';
-require 'produto_controller.php';
-?>
+require 'produto_controller.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">

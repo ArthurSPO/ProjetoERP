@@ -1,20 +1,6 @@
 <?php
 $acao = 'recuperar';
-require 'cliente_controller.php';
-?>
-<?php
-       
-
-    
-
-
-
-
-
-                ?>
-
-
-
+require 'cliente_controller.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -104,7 +90,6 @@ require 'cliente_controller.php';
                     </ul>
                     <?php
 
-
                     } elseif ($produto->p00_lig == null || $produto->c00_nome == null){
                         $array[] = $produto->p00_descricao;
                     }
@@ -118,11 +103,7 @@ require 'cliente_controller.php';
                 
             </div>
         </div>
-
     </div>
-
-
-
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
             integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

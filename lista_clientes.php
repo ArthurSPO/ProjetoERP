@@ -1,7 +1,6 @@
 <?php
 $acao = 'recuperar';
-require 'cliente_controller.php';
-?>
+require 'cliente_controller.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">

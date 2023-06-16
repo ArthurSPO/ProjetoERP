@@ -70,27 +70,6 @@
 
         } 
 
-        // public function vincular() {
-        //     $query = 'UPDATE p00_produto SET p00_lig = :cod WHERE :lig = p00_codigo';
-        //     $stmt = $this->conexao->prepare($query);
-        
-        //     $lig = $this->cliente->__get('lig');
-        //     if (empty($lig)) {
-        //         $lig = null; // Atribuir null se o valor de :lig for vazio
-        //     }
-        
-        //     $stmt->bindValue(':lig', $lig);
-        //     $stmt->bindValue(':cod', $this->cliente->__get('cod_cliente'));
-        //     $stmt->execute();
-        // }
-        
-        // public function excluirVinculo(){
-        //     $query = 'delete from p00_produto where p00_lig = :cod';
-        //     $stmt = $this->conexao->prepare($query);
-        //     $stmt->bindValue(':cod', $this->cliente->__get('cod_cliente'));
-        //     $stmt->execute();
-
-        // }
     }
 
 ?>

@@ -122,29 +122,8 @@
 
         $service->vincular();
   
-        // header('location: controle_produtos.php');
-        // $cliente = new Cliente();
-        // if (empty($_POST['lig'])){
-        //     $cliente->__set('cod_cliente',$_POST['cod_cliente']);
-        //     $conexao = new Conexao();
-        //     $service = new ServiceCliente($conexao, $cliente);
-           // $service->excluirVinculo();
 
-            header('location: controle_clientes.php');
-
-        // } else {
-        //     $cliente = new Cliente();
-        //     $cliente->__set('lig', $_POST['lig']);
-        //     $cliente->__set('cod_cliente', $_POST['cod_client']);
-        //     $conexao = new Conexao();
-        //     $service = new ServiceCliente($conexao, $cliente);
-        //     $service->vincular();
-      
-        //     header('location: lista_produtos.php');
-        // }
-
-  
-
+        header('location: controle_clientes.php');
 
     }
 
