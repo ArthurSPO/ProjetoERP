@@ -68,7 +68,8 @@
             $stmt->bindValue(':cod', $this->cliente->__get('cod'));
             $stmt->execute();
 
-        }
+        } 
+
         // public function vincular() {
         //     $query = 'UPDATE p00_produto SET p00_lig = :cod WHERE :lig = p00_codigo';
         //     $stmt = $this->conexao->prepare($query);

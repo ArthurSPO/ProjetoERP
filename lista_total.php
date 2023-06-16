@@ -1,3 +1,21 @@
+<?php
+$acao = 'recuperar';
+require 'cliente_controller.php';
+?>
+<?php
+       
+
+    
+
+
+
+
+
+                ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -68,6 +86,33 @@
             </div>
             <div class="col-md-8 shadow-lg p-3 mb-5 bg-body rounded">
                 <h1 class="text-center">Lista de Produtos e Clientes! </h1>
+                
+<?php
+                $lenCliente = count($_SESSION['cliente']);
+         $lenProduto = count($_SESSION['produto']);
+
+       if ($lenProduto > $lenCliente){
+            $var_control = false;
+            foreach ($_SESSION['produto'] as $key => $produto) {
+                foreach ($_SESSION['cliente'] as $idx => $clientes) {
+                    if ($produto->p00_lig == $clientes->c00_codigo){
+                    ?> 
+                    <ul class="list-group">
+                        <li class="list-group-item bg-secondary text-white fw-bold"><?=$clientes->c00_nome?></li>
+                        <li class="list-group-item"><?=$produto->p00_descricao?></li>
+                        <br>
+                    </ul>
+                    <?php
+
+
+                    } elseif ($produto->p00_lig == null || $produto->c00_nome == null){
+                        $array[] = $produto->p00_descricao;
+                    }
+                }
+            }
+       }
+
+?>
             </div>
             <div class="col-md-2">
                 

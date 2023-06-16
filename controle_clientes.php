@@ -2,55 +2,7 @@
 $acao = 'recuperar';
 require 'cliente_controller.php';
 
-
-    // foreach ($_SESSION as $key => $value) {
-    //     if($value->p00_lig == $value->c00_codigo){
-    //         echo $value->p00_descricao;
-    //         echo '<br>';
-    //     } else {
-    //         'Vazio';
-    //     }
-
-    // }
-
-    //      $lenCliente = count($_SESSION['cliente']);
-    //      $lenProduto = count($_SESSION['produto']);
-
-    //    if ($lenProduto > $lenCliente){
-    //         $var_control = false;
-    //         foreach ($_SESSION['produto'] as $key => $produto) {
-    //             foreach ($_SESSION['cliente'] as $idx => $clientes) {
-    //                 if ($produto->p00_lig == $clientes->c00_codigo){
-    //                     echo $clientes->c00_nome;
-    //                     echo '<br>';
-    //                     echo $produto->p00_descricao;
-    //                     //$var_control = true;
-    //                     echo '<br>';
-    //                     $array[] = $produto->p00_descricao;
-    //                 } elseif ($produto->p00_lig == null || $produto->c00_nome == null){
-    //                     $array[] = $produto->p00_descricao;
-    //                 }
-    //             }
-    //         }
-    //    }
-    // //    echo '<pre>';
-    // //    print_r($array);
-    // //    echo '</pre>';
-
-    //    for ($i=0; $i < count($array); $i++) { 
-    //         if ($array[$i] == $array[$i + 1]){
-    //             $array[$i] = '';
-    //         }
-    //     }
-    //     for ($i=0; $i < count($array); $i++) { 
-    //         if ($array[$i] == ''){
-    //             unset($array[$i]);
-    //         }
-    //     }
-
-    //     echo '<pre>';
-    //     print_r($array);
-    //     echo '</pre>';
+  
 ?>
 
 
@@ -374,24 +326,11 @@ require 'cliente_controller.php';
                     $var_controle = true;
                 }
             }
-
             if (!$var_controle) {
                 echo 'Vazio';
-            }
-
-            ?>
-
-            <hr>
-            <h2>tentativa 2 Vinculo</h2>
-            <?php 
-            foreach ($_SESSION['produto'] as $key => $produtos) { ?>
-            <p class="card-text">Produto Vinculado: <?=$produtos->p00_descricao?> (<?=$produtos->p00_lig?>)</p>
+            }?>
             
-
-             <?php }
-            ?>
-
-
+   
             <br>
             <button class="btn btn-danger" onclick="remover(<?= $clientes->c00_codigo ?>)">Excluir</button>
             <button class="btn btn-info" onclick="editar(<?= $clientes->c00_codigo ?>,'<?= $clientes->c00_nome ?>')">Editar nome</button>
@@ -413,7 +352,7 @@ require 'cliente_controller.php';
                         <option name="lig" value="<?= $produtos->p00_codigo ?>"><?php echo $produtos->p00_codigo ?></option>
                     <?php } ?>
                 </select>
-                <button class="btn btn-warning">Vincular</button>
+                <button class="btn btn-danger" disabled>Em manutenção</button>
                 <input type="hidden" name="cod_client" value="<?= $clientes->c00_codigo ?>">                                
             </form>
         </div>

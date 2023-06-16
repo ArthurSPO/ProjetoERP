@@ -73,5 +73,16 @@
             $stmt->bindValue(':cod', $this->produto->__get('cod'));
             $stmt->execute();
         }
+        public function recuperarLig(){
+            $query = 'SELECT p00_produto.p00_lig, c00_cliente.nome
+                      FROM p00_produto
+                      JOIN c00_cliente ON p00_produto.p00_lig = c00_cliente.c00_cliente
+                      WHERE p00_produto.p00_codigo = :cod'; 
+            $stmt = $this->conexao->prepare($query);
+            $stmt->bindValue(':cod', $this->produto->__get('cod'));
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+        
     }
 ?>

@@ -107,13 +107,7 @@
         $service->vincular();
   
         header('location: controle_produtos.php');
-        // echo '<pre>';
-        // print_r($service);
-        // echo '</pre>';
 
-        // echo '<pre>';
-        // print_r($_POST);
-        // echo '</pre>';
     }
 
     session_start();
